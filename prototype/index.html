@@ -17,6 +17,7 @@
         <button class="nav-btn active" data-view="home">홈</button>
         <button class="nav-btn" data-view="chart">내 사주</button>
         <button class="nav-btn" data-view="fortune">운세</button>
+        <button class="nav-btn" data-view="compatibility">궁합 <span class="demo-nav">시연</span></button>
         <button class="nav-btn" data-view="chat">AI 상담</button>
       </nav>
       <button class="quiet-button" id="open-privacy" type="button">서비스 안내 <span>↗</span></button>
@@ -27,14 +28,14 @@
         <div class="hero">
           <div class="cosmic-points" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="hero-left">
-            <span class="eyebrow"><span class="tiny-sparkle">✦</span> 당신만의 별자리를 읽는 시간</span>
+            <span class="eyebrow"><span class="tiny-sparkle">✦</span> 포포와 달빛 아래 나를 알아가는 시간</span>
             <h1 id="home-title">나를 이해하는<br><span class="accent-headline">다정한 사주 여행.</span></h1>
-            <p class="hero-desc">어려운 명리 용어는 쉽게, 궁금한 이야기는 깊게.<br>나의 명식을 살펴보고 AI와 질문을 이어가요.</p>
+            <p class="hero-desc">어려운 명리 용어는 쉽게, 궁금한 이야기는 차근차근.<br>나의 명식을 살펴보고 AI와 질문을 이어가요.</p>
             <div class="hero-cta">
               <button class="button primary" type="button" id="open-birth">내 사주 시작하기 <span aria-hidden="true">↗</span></button>
-              <button class="button secondary" type="button" data-view="chart">서비스 미리보기</button>
+              <button class="button secondary" type="button" data-view="compatibility">궁합 살펴보기 <span class="demo-cta">시연용</span></button>
             </div>
-            <div class="hero-proof"><span class="proof-icon">✓</span> 회원가입 없이 시작 <span class="sep">•</span> <span class="proof-icon">✓</span> 풀이 근거 확인</div>
+            <div class="hero-proof"><span class="proof-icon">✓</span> 비회원 화면 체험 <span class="sep">•</span> <span class="proof-icon">✓</span> 기획 목업 · 실제 계산 미연결</div>
           </div>
           <div class="hero-right">
             <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
@@ -42,28 +43,13 @@
             <div class="moon-symbol">☾</div>
             <div class="mascot-card">
               <div class="avatar-wrap">
-                <svg class="mascot" viewBox="0 0 300 320" role="img" aria-label="포포의 예시 별숲 캐릭터 루미">
-                  <defs><linearGradient id="mascotMain" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2EDFF"/><stop offset="1" stop-color="#CDC5FC"/></linearGradient><radialGradient id="mascotShine"><stop stop-color="#FFFFFF" stop-opacity=".92"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient></defs>
-                  <ellipse cx="150" cy="276" rx="92" ry="17" fill="#8979C8" opacity=".22"/>
-                  <path d="M79 105 Q58 62 77 42 Q111 51 126 80" fill="#DED8FF" stroke="#8E83C8" stroke-width="5" stroke-linejoin="round"/>
-                  <path d="M177 83 Q202 41 224 47 Q236 75 217 119" fill="#DED8FF" stroke="#8E83C8" stroke-width="5" stroke-linejoin="round"/>
-                  <path d="M149 65 C216 64 253 124 248 195 C245 254 211 273 151 273 C81 275 50 237 53 183 C55 108 92 66 149 65Z" fill="url(#mascotMain)" stroke="#958BD2" stroke-width="5"/>
-                  <ellipse cx="111" cy="184" rx="13" ry="16" fill="#333052"/><ellipse cx="192" cy="184" rx="13" ry="16" fill="#333052"/>
-                  <circle cx="107" cy="179" r="4" fill="white"/><circle cx="188" cy="179" r="4" fill="white"/>
-                  <ellipse cx="79" cy="211" rx="17" ry="9" fill="#F6A9BB" opacity=".74"/><ellipse cx="220" cy="211" rx="17" ry="9" fill="#F6A9BB" opacity=".74"/>
-                  <path d="M143 210 Q152 220 162 210" fill="none" stroke="#333052" stroke-width="5" stroke-linecap="round"/>
-                  <path d="M124 109 l9 -28 17 19 20 -20 9 29 -25 19Z" fill="#FFE6A0" stroke="#D6A95A" stroke-width="4"/>
-                  <circle cx="151" cy="107" r="5" fill="#FFF"/><ellipse cx="150" cy="141" rx="71" ry="55" fill="url(#mascotShine)" opacity=".3"/>
-                  <path d="M65 227 Q39 215 40 195" stroke="#ABA2E0" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M239 222 Q261 211 263 195" stroke="#ABA2E0" stroke-width="12" fill="none" stroke-linecap="round"/>
-                  <path d="M78 250 Q91 263 112 262" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" opacity=".3"/>
-                  <path d="M51 83 l8 -13 8 13 -8 13Z" fill="#FBE3A2"/><path d="M234 119 l7 -13 7 13 -7 13Z" fill="#FBE3A2"/>
-                </svg>
+                <img class="mascot" src="assets/popo-moonlight-rabbit.webp" alt="속눈썹 없는 동그란 눈의 달토끼 포포가 별을 품고 초승달에 기대 달빛을 받는 모습" width="1000" height="1191" loading="eager">
               </div>
-              <div class="mascot-caption">오늘 만난 별숲 친구 <strong>루미 <span>✦</span></strong></div>
-              <div class="mascot-footnote">캐릭터는 서비스 콘셉트 시안입니다</div>
+              <div class="mascot-caption">달빛을 모으는 친구 <strong>포포 <span>✦</span></strong></div>
+              <div class="mascot-footnote">포포의 대표 마스코트 · 확정 일러스트</div>
             </div>
-            <div class="float-chip chip-top"><span>✦</span> 나의 일주 캐릭터</div>
-            <div class="float-chip chip-bottom"><span>☾</span> 해석의 근거까지</div>
+            <div class="float-chip chip-top"><span>✦</span> 달토끼 포포</div>
+            <div class="float-chip chip-bottom"><span>☾</span> 나만의 이야기 발견</div>
           </div>
         </div>
 
@@ -72,7 +58,7 @@
           <div class="features-grid">
             <button class="feature-card" type="button" data-view="chart"><span class="feature-icon lavender">☯</span><span class="feature-name">내 사주 이해하기</span><span class="feature-description">명식부터 쉬운 풀이, 심화 해설까지</span><span class="feature-link">살펴보기 ↗</span></button>
             <button class="feature-card" type="button" data-view="reading"><span class="feature-icon peach">♡</span><span class="feature-name">궁금한 주제 찾기</span><span class="feature-description">연애·재물·직업·인간관계 맞춤 탐색</span><span class="feature-link">살펴보기 ↗</span></button>
-            <button class="feature-card" type="button" data-view="fortune"><span class="feature-icon gold-icon">☾</span><span class="feature-name">운의 흐름 읽기</span><span class="feature-description">오늘, 올해, 토정비결 콘셉트 보기</span><span class="feature-link">살펴보기 ↗</span></button>
+            <button class="feature-card" type="button" data-view="compatibility"><span class="feature-icon gold-icon">♡</span><span class="feature-name">우리 사이 살펴보기</span><span class="feature-description">연인·배우자·가족·친구 궁합 <b>시연용</b></span><span class="feature-link">궁합 보기 ↗</span></button>
             <button class="feature-card" type="button" data-view="chat"><span class="feature-icon mint-icon">✦</span><span class="feature-name">AI와 이야기하기</span><span class="feature-description">풀이를 읽다가 궁금한 점을 이어 질문</span><span class="feature-link">살펴보기 ↗</span></button>
           </div>
         </section>
@@ -89,6 +75,7 @@
               <div class="pillar"><span>월주</span><strong>丙<small>寅</small></strong><em>예시</em></div>
               <div class="pillar"><span>년주</span><strong>乙<small>巳</small></strong><em>예시</em></div>
             </div>
+            <div class="term-actions" role="group" aria-label="명리 용어 설명 열기"><span>용어가 궁금하다면?</span><button type="button" class="term-token" data-term="일간">일간 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="오행">오행 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="십성">십성 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="일주">일주 <span aria-hidden="true">ⓘ</span></button></div>
             <p class="explain-note">사주 네 기둥의 글자를 먼저 보여주고, 필요한 만큼 해석을 펼쳐볼 수 있어요. <b>시주가 없으면 임의로 만들지 않아요.</b></p>
             <div class="panel-actions"><button type="button" class="button primary dark" data-view="reading">내 사주 해석 보기 →</button><button type="button" class="button outline" data-view="character">일주 캐릭터 보기</button></div>
           </article>
@@ -119,6 +106,49 @@
         </article>
       </section>
 
+
+      <section class="view inner-view compat-view" data-panel="compatibility" aria-labelledby="compat-heading" hidden>
+        <div class="page-intro"><p class="overline">MOONLIGHT COMPATIBILITY · DEMO</p><h1 id="compat-heading">포포의 달빛 궁합</h1><p>관계에 맞는 이야기를 골라, 서로를 이해할 질문을 찾아봐요.</p></div>
+        <div class="inline-notice">ⓘ <strong>궁합 화면 시연용</strong>입니다. 사주 계산·상대방 분석·AI 호출을 하지 않으며 입력 정보는 저장하거나 전송하지 않아요.</div>
+        <div class="compat-progress" aria-label="궁합 진행 단계"><span class="active" data-compat-progress="1">1. 관계 선택</span><span data-compat-progress="2">2. 정보 입력</span><span data-compat-progress="3">3. 예시 결과</span></div>
+        <section class="compat-step" id="compat-step-1" aria-label="관계 유형 선택">
+          <div class="light-panel compat-box">
+            <div class="compat-top"><p class="kicker">STEP 01</p><h2>어떤 관계가 궁금한가요?</h2><p>관계에 따라 알아보고 싶은 주제도 다를 수 있어요.</p></div>
+            <div class="relationship-grid" role="group" aria-label="관계 선택">
+              <button type="button" class="relation-card" data-relationship="dating" aria-pressed="false"><span class="relation-emoji">♡</span><strong>연인</strong><small>마음과 대화 방식</small></button>
+              <button type="button" class="relation-card" data-relationship="spouse" aria-pressed="false"><span class="relation-emoji">✦</span><strong>배우자</strong><small>함께하는 생활</small></button>
+              <button type="button" class="relation-card" data-relationship="family" aria-pressed="false"><span class="relation-emoji">☾</span><strong>가족</strong><small>서로의 기대와 거리</small></button>
+              <button type="button" class="relation-card" data-relationship="friend" aria-pressed="false"><span class="relation-emoji">❋</span><strong>친구</strong><small>편안한 우정과 소통</small></button>
+            </div>
+            <button type="button" class="button primary dark wide compat-next" id="compat-go-input" disabled>관계를 선택해 주세요</button>
+            <p class="compat-legal">전통 명리 해석은 관계의 미래나 상대 마음을 확정적으로 판단하지 않아요.</p>
+          </div>
+        </section>
+        <section class="compat-step" id="compat-step-2" aria-label="두 사람 정보 입력" hidden>
+          <div class="light-panel compat-box">
+            <div class="compat-top"><p class="kicker">STEP 02</p><h2>두 사람의 정보를 구분해 볼게요</h2><p>입력 구조를 확인하는 단계예요. 실제 개인정보 대신 가상 날짜로 체험해 주세요.</p></div>
+            <form id="compat-input-form" novalidate>
+              <div class="compat-person-grid">
+                <fieldset class="person-card"><legend>나 (A)</legend><label for="compat-date-a">생년월일 · 양력 시연</label><input type="date" id="compat-date-a" required value="2000-01-01"><label class="compat-check"><input type="checkbox" id="compat-unknown-a" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
+                <fieldset class="person-card"><legend>상대방 (B)</legend><label for="compat-date-b">생년월일 · 양력 시연</label><input type="date" id="compat-date-b" required value="2001-02-02"><label class="compat-check"><input type="checkbox" id="compat-unknown-b" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
+              </div>
+              <p class="compat-legal">양·음력 변환, 윤달, 지역 및 출생 시간 처리는 실제 계산 정책 검증 후 지원해요. 지금 입력한 날짜는 결과에 반영되지 않아요.</p>
+              <p class="form-error" id="compat-error" role="alert" hidden></p>
+              <div class="compat-actions"><button type="button" class="button outline" id="compat-back-1">이전 단계</button><button type="submit" class="button primary dark">가상 예시 결과 보기 →</button></div>
+            </form>
+          </div>
+        </section>
+        <section class="compat-step" id="compat-step-3" aria-label="궁합 결과 예시" hidden>
+          <div class="light-panel compat-box compat-result">
+            <div class="compat-result-heading"><span class="small-tag">계산 없는 예시 · 시연용</span><p class="kicker" id="compat-result-type">관계별 궁합</p><h2>두 사람 사이, 무엇을 이해하면 좋을까요?</h2><p>개인별 사주 계산값이나 궁합 점수가 아닌 <strong>콘텐츠 구조 예시</strong>예요.</p></div>
+            <div class="compat-mascot-mini" aria-hidden="true"><img src="assets/popo-moonlight-rabbit-avatar.webp" alt="" width="380" height="380"><p>포포와 함께<br>관계의 이야기를 살펴봐요 ✦</p></div>
+            <div class="compat-section-grid" id="compat-result-sections"></div>
+            <div class="compat-ask"><h3>이런 질문부터 시작해 볼까요?</h3><p>“서로 의견이 다를 때 어떤 대화가 도움이 될까?”</p><button type="button" class="button outline" disabled>AI 후속 상담 · 준비 중</button></div>
+            <div class="compat-actions"><button type="button" class="button outline" id="compat-back-2">정보 다시 보기</button><button type="button" class="button primary dark" id="compat-reset">다른 관계 보기 ↗</button></div>
+          </div>
+        </section>
+      </section>
+
       <section class="view inner-view" data-panel="fortune" aria-labelledby="fortune-heading" hidden>
         <div class="page-intro"><p class="overline">FORTUNE · CONCEPT</p><h1 id="fortune-heading">시간에 따라 달라지는 이야기</h1><p>대운, 올해 운세, 토정비결은 각각 보는 방법이 달라요.</p></div>
         <div class="fortune-layout">
@@ -135,7 +165,7 @@
       <section class="view inner-view" data-panel="character" aria-labelledby="character-heading" hidden>
         <div class="page-intro"><p class="overline">CHARACTER · CONCEPT</p><h1 id="character-heading">사주 속 작은 별숲 친구</h1><p>같은 일주는 같은 기본 친구를 만나요. 꾸미기는 내가 직접 선택할 수 있어요.</p></div>
         <div class="character-layout">
-          <div class="character-stage"><div class="stage-stars" aria-hidden="true">✧　 ✦　　✧</div><div id="character-sprite" class="character-sprite violet"><svg viewBox="0 0 220 235" role="img" aria-label="가상 캐릭터 루미"><ellipse cx="109" cy="217" rx="66" ry="10" fill="#222047" opacity=".18"/><path d="M52 69Q42 31 62 23Q93 29 98 60" fill="currentColor" stroke="#71669C" stroke-width="4"/><path d="M125 63Q149 26 170 28Q183 58 167 85" fill="currentColor" stroke="#71669C" stroke-width="4"/><path d="M110 54C160 54 194 95 191 146C188 187 160 211 109 211C56 211 28 182 30 139C33 89 64 53 110 54Z" fill="currentColor" stroke="#71669C" stroke-width="4"/><ellipse cx="80" cy="145" rx="8" ry="12" fill="#342D56"/><ellipse cx="140" cy="145" rx="8" ry="12" fill="#342D56"/><circle cx="77" cy="141" r="3" fill="#fff"/><circle cx="137" cy="141" r="3" fill="#fff"/><ellipse cx="58" cy="169" rx="13" ry="7" fill="#E9A2AE"/><ellipse cx="165" cy="169" rx="13" ry="7" fill="#E9A2AE"/><path d="M102 168Q111 177 119 168" fill="none" stroke="#342D56" stroke-width="3.5" stroke-linecap="round"/><path d="M89 86L97 63L111 79L127 61L135 86L112 101Z" fill="#F5D892" stroke="#CDAE60" stroke-width="3"/><path d="M37 185l-4 -8 7 -3 4 8Z" fill="#F5D892"/><path d="M174 106l7 -13 7 13 -7 12Z" fill="#F5D892"/></svg></div><div class="stage-caption">가상 일주 예시 <strong>루미</strong><span>✦ 60갑자 캐릭터 시스템 시안</span></div></div>
+          <div class="character-stage"><div class="stage-stars" aria-hidden="true">✧　 ✦　　✧</div><div id="character-sprite" class="character-sprite violet"><svg viewBox="0 0 220 235" role="img" aria-label="가상 캐릭터 루미"><ellipse cx="109" cy="217" rx="66" ry="10" fill="#222047" opacity=".18"/><path d="M52 69Q42 31 62 23Q93 29 98 60" fill="currentColor" stroke="#71669C" stroke-width="4"/><path d="M125 63Q149 26 170 28Q183 58 167 85" fill="currentColor" stroke="#71669C" stroke-width="4"/><path d="M110 54C160 54 194 95 191 146C188 187 160 211 109 211C56 211 28 182 30 139C33 89 64 53 110 54Z" fill="currentColor" stroke="#71669C" stroke-width="4"/><ellipse cx="80" cy="145" rx="8" ry="12" fill="#342D56"/><ellipse cx="140" cy="145" rx="8" ry="12" fill="#342D56"/><circle cx="77" cy="141" r="3" fill="#fff"/><circle cx="137" cy="141" r="3" fill="#fff"/><ellipse cx="58" cy="169" rx="13" ry="7" fill="#E9A2AE"/><ellipse cx="165" cy="169" rx="13" ry="7" fill="#E9A2AE"/><path d="M102 168Q111 177 119 168" fill="none" stroke="#342D56" stroke-width="3.5" stroke-linecap="round"/><path d="M89 86L97 63L111 79L127 61L135 86L112 101Z" fill="#F5D892" stroke="#CDAE60" stroke-width="3"/><path d="M37 185l-4 -8 7 -3 4 8Z" fill="#F5D892"/><path d="M174 106l7 -13 7 13 -7 12Z" fill="#F5D892"/></svg></div><div class="stage-caption">가상 일주 캐릭터 예시 <strong>루미</strong><span>✦ 대표 마스코트 포포와 별개 · 60종 준비 중</span></div></div>
           <aside class="character-explain light-panel"><p class="kicker">PERSONALIZATION DESIGN</p><h2>60갑자에는<br>60개의 기본 친구</h2><p>일주가 계산되면 결정적인 캐릭터 ID를 연결해요. 같은 일주에 대한 기본 캐릭터는 같고, 별빛 장식은 자유롭게 선택하는 방식이에요.</p><p class="panel-small">※ 실제 캐릭터 60종 및 명리 매핑은 아직 제작·검증하지 않았습니다.</p><strong class="choice-label">캐릭터 색감 미리보기</strong><div class="theme-picker"><button class="theme-swatch active" data-color="violet" aria-label="보라" title="보라"></button><button class="theme-swatch" data-color="mint" aria-label="민트" title="민트"></button><button class="theme-swatch" data-color="peach" aria-label="복숭아" title="복숭아"></button><button class="theme-swatch" data-color="gold" aria-label="골드" title="골드"></button></div></aside>
         </div>
       </section>
@@ -156,6 +186,14 @@
 
   <dialog id="birth-dialog" class="birth-dialog" aria-labelledby="birth-title"><div class="dialog-head"><div><p class="overline">GET STARTED</p><h2 id="birth-title">출생 정보 입력 시안</h2></div><button type="button" class="close-dialog" id="close-birth" aria-label="닫기">×</button></div><p class="modal-explanation">이 폼은 디자인 시연용입니다. 입력 정보는 저장하거나 사주를 계산하지 않아요.</p><div class="field"><label for="calendar-type">날짜 기준</label><select id="calendar-type"><option>양력</option><option>음력</option></select></div><div class="field"><label for="birthday">생년월일</label><input id="birthday" type="date" value="2000-01-01"></div><div class="two-fields"><div class="field"><label for="birthtime">출생 시간</label><input id="birthtime" type="time" value="12:00"></div><label class="checkline"><input type="checkbox" id="unknown-time"> 출생 시간 모름</label></div><div class="field"><label for="birthplace">출생 지역</label><select id="birthplace"><option>서울 (예시)</option><option>부산 (예시)</option><option>대전 (예시)</option><option>기타 · 미확정</option></select></div><label class="checkline"><input type="checkbox" id="leap-month"> 음력 윤달 (음력 선택시 정책 검증 필요)</label><button class="button primary dark wide" id="preview-chart" type="button">가상 명식 화면 미리보기 →</button></dialog>
   <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><div class="dialog-head"><h2 id="info-title">이 시안에 관하여</h2><button type="button" class="close-dialog" id="close-info" aria-label="닫기">×</button></div><p>포포 서비스 기획 포트폴리오를 위한 인터랙티브 UI 목업입니다. 실제 명식 계산, AI API 연결, 토정비결 괘 산출, 60종 캐릭터 전체 개발은 아직 수행하지 않았습니다.</p><p>사주·타로·토정비결은 과학적으로 미래 예측 능력이 입증되지 않은 전통·문화 콘텐츠입니다. 의료·법률·투자 등 중요한 의사결정의 근거로 삼지 마세요.</p><button class="button outline" id="info-confirm" type="button">확인했어요</button></dialog>
+  <dialog id="term-dialog" class="term-dialog" aria-labelledby="term-title">
+    <div class="dialog-head"><div><p class="overline">SAJU WORDS · EASY TO DEEP</p><h2 id="term-title">명리 용어 알아보기</h2></div><button type="button" class="close-dialog" id="close-term" aria-label="용어 설명 닫기">×</button></div>
+    <p class="term-intro" id="term-basic"></p>
+    <button type="button" class="expand" id="term-deep-toggle" aria-expanded="false" aria-controls="term-deep"><span>전문가 심화 설명 보기</span><span aria-hidden="true">⌄</span></button>
+    <div class="deep-detail" id="term-deep" hidden></div>
+    <p class="compat-legal">일반적인 명리 용어 설명입니다. 목업의 가상 명식이나 본인에 대한 진단 결과가 아니에요.</p>
+    <button type="button" class="button outline wide" disabled>이 용어로 AI에게 질문 · 연동 준비 중</button>
+  </dialog>
   <script src="app.js" defer></script>
 </body>
 </html>
