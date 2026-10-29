@@ -1,12 +1,12 @@
 const $$=(s)=>Array.from(document.querySelectorAll(s));
 const $=(s)=>document.querySelector(s);
-const viewNames=new Set(['home','chart','reading','fortune','character','chat']);
+const viewNames=new Set(['home','chart','reading','fortune','character','chat','compatibility']);
 let lastTopic='life';
 function showView(view){
   if(!viewNames.has(view))return;
   $$('.view').forEach(p=>{let yes=p.dataset.panel===view;p.classList.toggle('active',yes);p.hidden=!yes;});
   $$('[data-view]').forEach(btn=>{const yes=btn.dataset.view===view;btn.classList.toggle('active',yes);if(btn.classList.contains('nav-btn'))btn.setAttribute('aria-current',yes?'page':'false');});
-  document.title='포포 · '+({home:'홈',chart:'내 사주',reading:'상세 해석',fortune:'운세',character:'일주 캐릭터',chat:'AI 상담'}[view]);
+  document.title='포포 · '+({home:'홈',chart:'내 사주',reading:'상세 해석',fortune:'운세',compatibility:'궁합 시연',character:'일주 캐릭터',chat:'AI 상담'}[view]);
   try{history.replaceState(null,'','#'+view)}catch(e){}
   window.scrollTo({top:0,behavior:'instant'});
 }
@@ -45,3 +45,59 @@ function appendMessage(text,who){const div=document.createElement('div');div.cla
 $('#chat-form').addEventListener('submit',e=>{e.preventDefault();const input=$('#chat-text');const q=input.value.trim();if(!q)return;appendMessage(q,'user');appendMessage('시안 안내: 실제 AI와 연동되지 않아 입력 문장을 분석하거나 사주를 풀이하지 않습니다. 완성 서비스에서는 선택한 주제(현재: '+(topics[lastTopic]?.[0]||'미선택')+')와 검증된 명식 데이터를 연결하고, 해석 근거와 불확실성을 분리해 답변할 예정입니다.','assistant');input.value='';});
 $$('[data-prompt]').forEach(b=>b.addEventListener('click',()=>{$('#chat-text').value=b.dataset.prompt;$('#chat-text').focus()}));
 $('#ask-from-reading').addEventListener('click',()=>{$('#chat-text').placeholder='선택한 '+topics[lastTopic][0]+'에 대해 질문해 보세요 (시안)'});
+
+
+// v0.9: 명리 용어 공통 설명 패널 — 개인 계산 결과가 아닌 일반 개념 설명만 표시
+const termDictionary = {
+  '일간': ['일간(日干)', '태어난 날의 천간을 뜻합니다. 전통 명리학에서 자신을 해석할 때 기준으로 사용하는 글자예요.', '일주의 천간 부분입니다. 다른 천간·지지와의 오행 및 음양 관계를 살피는 기준으로 활용합니다.'],
+  '오행': ['오행(五行)', '목·화·토·금·수, 다섯 종류로 사물과 변화를 설명하는 전통 분류예요.', '전통 명리학에서는 천간·지지를 오행으로 분류하고 생·극의 관계 등을 해석에 사용합니다. 오행 개수만으로 개인 성격을 확정할 수는 없습니다.'],
+  '십성': ['십성(十星)', '일간을 기준으로 다른 글자와의 관계를 열 가지 유형으로 분류하는 명리 용어예요.', '비견·겁재·식신·상관·정재·편재·정관·편관·정인·편인으로 구분합니다. 실제 개인별 산출은 검증된 명식과 규칙이 있어야 합니다.'],
+  '일주': ['일주(日柱)', '태어난 날을 나타내는 천간과 지지의 한 쌍을 말해요.', '육십갑자 중 하나로 나타냅니다. 출생 시각과 날짜 경계 정책의 검증이 필요하며, 계산되지 않은 일주를 임의로 확정하지 않습니다.']
+};
+const termDialog = $('#term-dialog');
+let lastTermTrigger=null;
+$$('[data-term]').forEach(btn=>btn.addEventListener('click',()=>{
+  const record=termDictionary[btn.dataset.term]; if(!record)return;
+  lastTermTrigger=btn;
+  $('#term-title').textContent=record[0];$('#term-basic').textContent=record[1];$('#term-deep').textContent=record[2];
+  $('#term-deep').hidden=true;$('#term-deep-toggle').setAttribute('aria-expanded','false');
+  termDialog.showModal();$('#close-term').focus();
+}));
+$('#close-term').addEventListener('click',()=>termDialog.close());
+$('#term-deep-toggle').addEventListener('click',()=>{const el=$('#term-deep');el.hidden=!el.hidden;$('#term-deep-toggle').setAttribute('aria-expanded',String(!el.hidden));});
+termDialog.addEventListener('close',()=>{if(lastTermTrigger)lastTermTrigger.focus();});
+
+// v0.9: 궁합 인터랙티브 목업. 브라우저 메모리의 가상 입력만 사용, 전송·저장·계산 없음.
+const relationshipData = {
+  dating:['연인', ['감정 표현 방식','서로 편한 점','갈등 시 반응','대화 팁']],
+  spouse:['배우자',['생활과 의사소통','협력 방식','의견 차이','장기 관계 팁']],
+  family:['가족',['표현 방식','서로 기대하는 점','거리감과 갈등','이해와 대화 팁']],
+  friend:['친구',['친해지는 방식','함께하는 강점','불편해지는 상황','관계 유지 팁']]
+};
+let selectedRelationship=null;
+function showCompatStep(n){
+  [1,2,3].forEach(i=>{$('#compat-step-'+i).hidden=i!==n; const label=$('[data-compat-progress="'+i+'"]');label.classList.toggle('active',i===n);label.classList.toggle('done',i<n);});
+  $('#compat-error').hidden=true;
+}
+$$('[data-relationship]').forEach(btn=>btn.addEventListener('click',()=>{
+  selectedRelationship=btn.dataset.relationship;
+  $$('[data-relationship]').forEach(b=>{const active=b===btn;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active));});
+  const next=$('#compat-go-input');next.disabled=false;next.textContent='두 사람 정보 입력하기 →';
+}));
+$('#compat-go-input').addEventListener('click',()=>{if(selectedRelationship)showCompatStep(2);});
+$('#compat-back-1').addEventListener('click',()=>showCompatStep(1));
+$('#compat-back-2').addEventListener('click',()=>showCompatStep(2));
+$('#compat-reset').addEventListener('click',()=>{showCompatStep(1);});
+$('#compat-input-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const a=$('#compat-date-a').value,b=$('#compat-date-b').value;
+  const err=$('#compat-error');
+  if(!a||!b||!Number.isFinite(Date.parse(a))||!Number.isFinite(Date.parse(b))){err.textContent='나와 상대방의 가상 날짜를 모두 입력해 주세요.';err.hidden=false;return;}
+  if(!selectedRelationship){showCompatStep(1);return;}
+  const [name,sections]=relationshipData[selectedRelationship];
+  $('#compat-result-type').textContent=name+' 궁합 · 콘텐츠 시연';
+  const box=$('#compat-result-sections');box.replaceChildren();
+  const helper=['서로 다를 수 있는 방식을 가정하고 대화 질문을 제안하는 영역이에요.', '상대가 편하다고 느끼는 상황을 서로 직접 확인해 보세요.', '의견이 다를 때 먼저 듣고 싶은 말을 구체적으로 물어보세요.', '정답을 내리기보다 함께 시도할 작은 행동을 정해 보세요.'];
+  sections.forEach((title,i)=>{const article=document.createElement('article');article.className='compat-result-card';const h3=document.createElement('h3');h3.textContent=('0'+(i+1))+'  '+title;const p=document.createElement('p');p.textContent=helper[i];article.append(h3,p);box.append(article);});
+  showCompatStep(3);
+});
