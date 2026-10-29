@@ -1,0 +1,18 @@
+RequirementID,Requirement,SourceStatus,Priority,DesignPolicy,UIReference,TestID,ImplementationStatus,EvidenceStatus
+FR-001,비회원 출생 정보 입력,v0.3 기준,P0,docs/02a-prd-v0.3-baseline-summary.md,prototype/index.html,QA-001,목업,미수집
+FR-003,생년월일 입력·검증,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-002,입력 시안,미수집
+FR-004,출생시간 모름·시주 추정 금지,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-004,시안만 구현,미수집
+FR-006,음력 윤달 입력·검증,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-003,입력 UI 시안,미수집
+FR-008,출생정보 수정·재계산,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-007,재계산 미구현,미수집
+FR-014,동일 정책 계산 재현성,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-005,역법 미구현,미수집
+FR-015,카테고리별 풀이,v0.3 기준,P0,docs/04-ia-and-flows.md,prototype/index.html,QA-008,텍스트 토글 목업,미수집
+FR-017,전문가 심화 보기,v0.3 기준,P0,docs/04-ia-and-flows.md,prototype/index.html,QA-009,텍스트 토글 목업,미수집
+FR-020,풀이 주제 AI 상담 연결,v0.3 기준,P0,docs/04-ia-and-flows.md,prototype/index.html,QA-010,상담 이동 UI만,미수집
+FR-023,명식 데이터 AI 전달,v0.3 기준,P0,docs/07-calculation-content-policy.md,prototype/index.html,QA-014,AI 미연결,미수집
+FR-025,동일 상담 세션 문맥,v0.3 기준,P0,docs/12-ai-evaluation-plan.md,prototype/index.html,QA-011,AI 미연결,미수집
+FR-027,AI 오류·재시도,v0.3 기준,P0,docs/12-ai-evaluation-plan.md,prototype/index.html,QA-012,AI 미연결,미수집
+FR-028,AI 해석 근거 표시,v0.3 기준,P0,docs/12-ai-evaluation-plan.md,prototype/index.html,QA-013,AI 미연결,미수집
+FR-V04-004,토정비결 전용 계산,v0.4 제안,P2,docs/10-screen-spec-addendum.md,prototype/index.html,AI-T10,화면 시안,미수집
+FR-V04-005,60갑자 일주 캐릭터,v0.4 제안,P1,docs/05-character-system.md,prototype/index.html,CHAR-T01,ID표·콘셉트 1종,미수집
+FR-V04-006,재회·건강 콘텐츠 안전 정책,v0.4 제안,P1,docs/12-ai-evaluation-plan.md,prototype/index.html,AI-T07,안전 문구 시안,미수집
+NFR-06,반응형 웹 접근성,v0.3 기준,P0,docs/06-design-system.md,prototype/index.html,QA-016,시안 제작,미수집

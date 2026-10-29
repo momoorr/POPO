@@ -1,0 +1,17 @@
+{
+  "name": "Midnight Stardust",
+  "status": "v0.4 visual proposal",
+  "colors": {
+    "midnight": "#11162F",
+    "deepPlum": "#24204A",
+    "lavender": "#C6B7FF",
+    "gold": "#E5C47A",
+    "ivory": "#FCF9F3",
+    "ink": "#24253D",
+    "muted": "#67687C",
+    "mint": "#A9E5D5"
+  },
+  "radius": {"cardPx": 24,"buttonPx": 15},
+  "accessibility": {"reduceMotion": true,"checkContrastBeforeLaunch": true},
+  "content": {"realCalculation": false,"realAi": false,"demoData": true}
+}
