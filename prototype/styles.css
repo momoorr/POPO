@@ -108,3 +108,58 @@
   .mascot-card{width:218px;height:263px}
   .float-chip{max-width:102px;white-space:normal;line-height:1.4}
 }
+
+
+/* v0.9.2 | Transparent moon-rabbit artwork in the homepage hero.
+   No mascot frame, label, orbit, or duplicate star ornaments.
+   The moon, clouds and stars are part of the transparent image. */
+.cosmic-points{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero{
+  grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
+  align-items:center;
+  min-height:660px;
+  gap:clamp(18px,3.5vw,54px);
+  padding-top:35px;
+  padding-bottom:35px;
+}
+.hero-right{
+  grid-column:1;
+  grid-row:1;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  align-self:center;
+  isolation:isolate;
+  z-index:1;
+  overflow:visible;
+}
+.hero-left{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  max-width:560px;
+  z-index:2;
+}
+.hero-rabbit-art{
+  display:block;
+  width:min(100%,505px);
+  height:auto;
+  object-fit:contain;
+  flex:0 0 auto;
+  max-width:100%;
+  filter:drop-shadow(0 22px 30px rgba(8,8,35,.17));
+}
+@media(max-width:1080px){
+  .hero{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:22px;min-height:600px}
+  .hero-rabbit-art{width:min(100%,450px)}
+}
+@media(max-width:720px){
+  .hero{grid-template-columns:minmax(0,1fr);min-height:auto;padding:37px 22px 23px;gap:12px}
+  .hero-left{grid-column:1;grid-row:1;max-width:100%}
+  .hero-right{grid-column:1;grid-row:2;min-height:0;margin-top:4px}
+  .hero-rabbit-art{width:min(100%,365px);height:auto;max-width:100%;filter:drop-shadow(0 10px 16px rgba(8,8,35,.12))}
+}
+@media(max-width:375px){
+  .hero-rabbit-art{width:min(100%,335px)}
+}
