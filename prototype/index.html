@@ -25,7 +25,8 @@
 
     <main id="main-content">
       <section class="view active" data-panel="home" aria-labelledby="home-title">
-        <div class="hero">
+        <div class="hero storybook-hero">
+          <div class="storybook-cloud storybook-cloud-left" aria-hidden="true"></div><div class="storybook-cloud storybook-cloud-right" aria-hidden="true"></div>
           <div class="cosmic-points" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="hero-left">
             <span class="eyebrow"><span class="tiny-sparkle">✦</span> 포포와 달빛 아래 나를 알아가는 시간</span>
@@ -53,6 +54,11 @@
             <button class="feature-card" type="button" data-view="compatibility"><span class="feature-icon gold-icon">♡</span><span class="feature-name">우리 사이 살펴보기</span><span class="feature-description">연인·배우자·가족·친구 궁합 <b>시연용</b></span><span class="feature-link">궁합 보기 ↗</span></button>
             <button class="feature-card" type="button" data-view="chat"><span class="feature-icon mint-icon">✦</span><span class="feature-name">AI와 이야기하기</span><span class="feature-description">풀이를 읽다가 궁금한 점을 이어 질문</span><span class="feature-link">살펴보기 ↗</span></button>
           </div>
+          <div class="element-feature-teaser">
+            <div class="element-feature-icon" aria-hidden="true">🌱</div>
+            <div class="element-feature-copy"><span class="overline">FIVE ELEMENTS · 체험 화면</span><h3>목·화·토·금·수, 다섯 풍경 속으로</h3><p>복잡한 용어를 외우기 전에, 색과 그림으로 오행의 상징부터 만나보세요.</p></div>
+            <button class="button primary dark" type="button" data-view="elements">오행 산책 시작하기 <span aria-hidden="true">→</span></button>
+          </div>
         </section>
       </section>
 
@@ -69,9 +75,45 @@
             </div>
             <div class="term-actions" role="group" aria-label="명리 용어 설명 열기"><span>용어가 궁금하다면?</span><button type="button" class="term-token" data-term="일간">일간 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="오행">오행 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="십성">십성 <span aria-hidden="true">ⓘ</span></button><button type="button" class="term-token" data-term="일주">일주 <span aria-hidden="true">ⓘ</span></button></div>
             <p class="explain-note">사주 네 기둥의 글자를 먼저 보여주고, 필요한 만큼 해석을 펼쳐볼 수 있어요. <b>시주가 없으면 임의로 만들지 않아요.</b></p>
-            <div class="panel-actions"><button type="button" class="button primary dark" data-view="reading">내 사주 해석 보기 →</button><button type="button" class="button outline" data-view="character">일주 캐릭터 보기</button></div>
+            <div class="panel-actions"><button type="button" class="button primary dark" data-view="reading">내 사주 해석 보기 →</button><button type="button" class="button outline" data-view="elements">오행의 다섯 풍경 →</button><button type="button" class="button outline" data-view="character">일주 캐릭터 보기</button></div>
           </article>
           <aside class="light-panel guide-panel"><span class="card-sigil">✦</span><p class="kicker">FIRST EXPLANATION</p><h2>어렵게 느껴졌던<br>명리 용어를 쉽게</h2><p>‘일주’는 태어난 날의 천간과 지지 조합을 말해요. 일주를 바탕으로 60개 캐릭터를 연결하는 방향을 기획하고 있어요.</p><button class="link-button" type="button" data-view="character">캐릭터 시안 살펴보기 ↗</button></aside>
+        </div>
+      </section>
+
+      <section class="view inner-view elements-view" data-panel="elements" aria-labelledby="elements-heading" hidden>
+        <div class="page-intro elements-intro"><p class="overline">FIVE ELEMENTS · INTERACTIVE DEMO</p><h1 id="elements-heading">다섯 가지 오행, 다섯 가지 풍경</h1><p>오행의 전통적 상징을 포포와 함께 그림으로 알아보세요.</p></div>
+        <div class="inline-notice elements-disclaimer">ⓘ 이 화면은 <strong>일반적인 오행의 상징을 소개하는 2D 시연</strong>이에요. 개인의 오행 개수나 강약을 계산한 결과가 아닙니다.</div>
+        <div class="elements-shell">
+          <div class="element-tabs" role="tablist" aria-label="오행 선택">
+            <button id="element-tab-wood" class="element-tab is-active" type="button" data-element="wood" role="tab" aria-selected="true" aria-controls="element-detail" tabindex="0"><span class="element-tab-symbol" aria-hidden="true">🌱</span><strong>목</strong><small>木</small></button>
+            <button id="element-tab-fire" class="element-tab" type="button" data-element="fire" role="tab" aria-selected="false" aria-controls="element-detail" tabindex="-1"><span class="element-tab-symbol" aria-hidden="true">✺</span><strong>화</strong><small>火</small></button>
+            <button id="element-tab-earth" class="element-tab" type="button" data-element="earth" role="tab" aria-selected="false" aria-controls="element-detail" tabindex="-1"><span class="element-tab-symbol" aria-hidden="true">✿</span><strong>토</strong><small>土</small></button>
+            <button id="element-tab-metal" class="element-tab" type="button" data-element="metal" role="tab" aria-selected="false" aria-controls="element-detail" tabindex="-1"><span class="element-tab-symbol" aria-hidden="true">✧</span><strong>금</strong><small>金</small></button>
+            <button id="element-tab-water" class="element-tab" type="button" data-element="water" role="tab" aria-selected="false" aria-controls="element-detail" tabindex="-1"><span class="element-tab-symbol" aria-hidden="true">≈</span><strong>수</strong><small>水</small></button>
+          </div>
+          <div class="elements-layout">
+            <div id="element-stage" class="element-stage" data-element-theme="wood" aria-label="오행 테마별 2D 풍경">
+              <div class="element-scene-stack" aria-hidden="true">
+                <img class="element-scene is-current" data-scene="wood" src="assets/scene-wood.svg" width="800" height="520" alt="">
+                <img class="element-scene" data-scene="fire" src="assets/scene-fire.svg" width="800" height="520" alt="">
+                <img class="element-scene" data-scene="earth" src="assets/scene-earth.svg" width="800" height="520" alt="">
+                <img class="element-scene" data-scene="metal" src="assets/scene-metal.svg" width="800" height="520" alt="">
+                <img class="element-scene" data-scene="water" src="assets/scene-water.svg" width="800" height="520" alt="">
+              </div>
+              <div class="element-stage-badge" id="element-stage-badge"><span aria-hidden="true">✦</span> 목(木)의 작은 숲</div>
+              <img class="element-mascot" src="assets/popo-moonlight-rabbit-avatar.webp" width="380" height="380" alt="초승달 위의 달토끼 포포가 오행 풍경을 소개해요">
+              <span class="element-stage-footnote">포포와 함께 둘러보는 오행의 상징 · 시연용</span>
+            </div>
+            <article class="element-copy light-panel" id="element-detail" role="tabpanel" tabindex="0" aria-labelledby="element-tab-wood">
+              <span class="small-tag">전통 명리 개념 · 개인 사주 결과 아님</span>
+              <div class="element-heading-row"><span class="element-large-icon" id="element-large-icon" aria-hidden="true">🌱</span><h2 id="element-title">목(木) · 자라나는 힘</h2></div>
+              <p class="element-lead" id="element-lead">새싹과 나무가 자라는 모습으로 성장과 뻗어감을 상징해요.</p>
+              <div class="element-info-box"><h3>조금 더 알아보기</h3><p id="element-description">오행은 사물과 변화의 관계를 설명하는 전통적인 다섯 분류예요. 목은 그중 성장과 확장의 이미지를 나타냅니다.</p></div>
+              <div class="element-info-note"><span aria-hidden="true">☾</span><p id="element-guidance">나에게 목이 많다는 뜻은 아니에요. 내 명식의 실제 구성은 계산 정책 검증 후 연결할 예정이에요.</p></div>
+              <div class="element-actions"><button class="button primary dark" type="button" data-view="chart">내 사주로 돌아가기</button><button class="button outline" type="button" data-term="오행">오행 용어 설명 ⓘ</button></div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -100,7 +142,7 @@
 
 
       <section class="view inner-view compat-view" data-panel="compatibility" aria-labelledby="compat-heading" hidden>
-        <div class="page-intro"><p class="overline">MOONLIGHT COMPATIBILITY · DEMO</p><h1 id="compat-heading">포포의 달빛 궁합</h1><p>관계에 맞는 이야기를 골라, 서로를 이해할 질문을 찾아봐요.</p></div>
+        <div class="page-intro"><p class="overline">MOONLIGHT COMPATIBILITY · DEMO</p><h1 id="compat-heading">포포의 달빛 궁합</h1><p>관계 유형에 맞는 질문을 살펴보고, 실제 대화에서 확인할 부분을 찾아봐요.</p></div>
         <div class="inline-notice">ⓘ <strong>궁합 화면 시연용</strong>입니다. 사주 계산·상대방 분석·AI 호출을 하지 않으며 입력 정보는 저장하거나 전송하지 않아요.</div>
         <div class="compat-progress" aria-label="궁합 진행 단계"><span class="active" data-compat-progress="1">1. 관계 선택</span><span data-compat-progress="2">2. 정보 입력</span><span data-compat-progress="3">3. 예시 결과</span></div>
         <section class="compat-step" id="compat-step-1" aria-label="관계 유형 선택">
@@ -121,8 +163,8 @@
             <div class="compat-top"><p class="kicker">STEP 02</p><h2>두 사람의 정보를 구분해 볼게요</h2><p>입력 구조를 확인하는 단계예요. 실제 개인정보 대신 가상 날짜로 체험해 주세요.</p></div>
             <form id="compat-input-form" novalidate>
               <div class="compat-person-grid">
-                <fieldset class="person-card"><legend>나 (A)</legend><label for="compat-date-a">생년월일 · 양력 시연</label><input type="date" id="compat-date-a" required value="2000-01-01"><label class="compat-check"><input type="checkbox" id="compat-unknown-a" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
-                <fieldset class="person-card"><legend>상대방 (B)</legend><label for="compat-date-b">생년월일 · 양력 시연</label><input type="date" id="compat-date-b" required value="2001-02-02"><label class="compat-check"><input type="checkbox" id="compat-unknown-b" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
+                <fieldset class="person-card"><legend>나 (A)</legend><label for="compat-date-a">생년월일 · 양력 시연</label><input type="date" id="compat-date-a" required value="2000-01-01" aria-describedby="compat-date-a-error"><p class="compat-field-error" id="compat-date-a-error" hidden></p><label class="compat-check"><input type="checkbox" id="compat-unknown-a" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
+                <fieldset class="person-card"><legend>상대방 (B)</legend><label for="compat-date-b">생년월일 · 양력 시연</label><input type="date" id="compat-date-b" required value="2001-02-02" aria-describedby="compat-date-b-error"><p class="compat-field-error" id="compat-date-b-error" hidden></p><label class="compat-check"><input type="checkbox" id="compat-unknown-b" checked> 출생 시간 모름 (시주 추정 안 함)</label></fieldset>
               </div>
               <p class="compat-legal">양·음력 변환, 윤달, 지역 및 출생 시간 처리는 실제 계산 정책 검증 후 지원해요. 지금 입력한 날짜는 결과에 반영되지 않아요.</p>
               <p class="form-error" id="compat-error" role="alert" hidden></p>

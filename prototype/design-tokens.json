@@ -1,17 +1,29 @@
 {
-  "name": "Midnight Stardust",
-  "status": "v0.4 visual proposal",
+  "name": "POPO Storybook Night v1.0",
+  "status": "2D concept prototype, actual saju calculation/AI not connected",
   "colors": {
-    "midnight": "#11162F",
-    "deepPlum": "#24204A",
-    "lavender": "#C6B7FF",
-    "gold": "#E5C47A",
-    "ivory": "#FCF9F3",
-    "ink": "#24253D",
-    "muted": "#67687C",
-    "mint": "#A9E5D5"
+    "navy": "#202A57",
+    "lavender": "#B8A4E8",
+    "pink": "#F6C9E4",
+    "cream": "#FFF7EE",
+    "mint": "#DDF4E3",
+    "yellow": "#FFF0A5",
+    "wood": "#80B79D",
+    "fire": "#F29E91",
+    "earth": "#E4BC85",
+    "metal": "#A6A9CA",
+    "water": "#7ABBCF"
   },
-  "radius": {"cardPx": 24,"buttonPx": 15},
-  "accessibility": {"reduceMotion": true,"checkContrastBeforeLaunch": true},
-  "content": {"realCalculation": false,"realAi": false,"demoData": true}
+  "motion": {
+    "cardMs": 300,
+    "themeMs": 600,
+    "reduceMotion": true,
+    "cssOnly": true
+  },
+  "content": {
+    "realCalculation": false,
+    "realAi": false,
+    "fiveElementsAreGeneralConcepts": true,
+    "compatibilityDemo": true
+  }
 }

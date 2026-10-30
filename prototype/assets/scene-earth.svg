@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0.9" y1="0" y2="1"><stop stop-color="#fff0d4"/><stop offset="1" stop-color="#f6dfc8"/></linearGradient>
+    <linearGradient id="land" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#d6b68c"/><stop offset="1" stop-color="#f6dfc8"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".65">
+    <circle cx="108" cy="83" r="4"/><circle cx="715" cy="86" r="4"/><circle cx="630" cy="143" r="3"/><circle cx="240" cy="121" r="3"/>
+  </g>
+
+  <circle cx="579" cy="110" r="53" fill="#fff8dc"/>
+  <g fill="#fffaf0"><ellipse cx="190" cy="101" rx="78" ry="24"/><ellipse cx="250" cy="113" rx="48" ry="18"/></g>
+  <path d="M0 375Q185 232 358 353T800 330V520H0Z" fill="#f0d0a0"/>
+  <path d="M0 417Q172 308 363 401T800 358V520H0Z" fill="#e8c08d"/>
+  <path d="M0 466Q212 355 435 457T800 430V520H0Z" fill="#d6ac7c"/>
+  <g fill="#9bbd8a"><ellipse cx="105" cy="406" rx="39" ry="10"/><ellipse cx="689" cy="411" rx="47" ry="11"/></g>
+  <g stroke="#a6a27a" stroke-width="4" stroke-linecap="round"><path d="M115 399v-44M686 405v-55M719 416v-35"/></g>
+  <g fill="#f6afd0"><circle cx="115" cy="342" r="13"/><circle cx="102" cy="354" r="13"/><circle cx="128" cy="355" r="13"/><circle cx="115" cy="368" r="12"/><circle cx="686" cy="338" r="12"/><circle cx="673" cy="350" r="12"/><circle cx="698" cy="350" r="12"/></g>
+  <g fill="#fff4a8"><circle cx="115" cy="354" r="9"/><circle cx="686" cy="350" r="8"/></g>
+</svg>

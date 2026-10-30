@@ -1,12 +1,12 @@
 const $$=(s)=>Array.from(document.querySelectorAll(s));
 const $=(s)=>document.querySelector(s);
-const viewNames=new Set(['home','chart','reading','fortune','character','chat','compatibility']);
+const viewNames=new Set(['home','chart','reading','fortune','character','chat','compatibility','elements']);
 let lastTopic='life';
 function showView(view){
   if(!viewNames.has(view))return;
   $$('.view').forEach(p=>{let yes=p.dataset.panel===view;p.classList.toggle('active',yes);p.hidden=!yes;});
   $$('[data-view]').forEach(btn=>{const yes=btn.dataset.view===view;btn.classList.toggle('active',yes);if(btn.classList.contains('nav-btn'))btn.setAttribute('aria-current',yes?'page':'false');});
-  document.title='포포 · '+({home:'홈',chart:'내 사주',reading:'상세 해석',fortune:'운세',compatibility:'궁합 시연',character:'일주 캐릭터',chat:'AI 상담'}[view]);
+  document.title='포포 · '+({home:'홈',chart:'내 사주',reading:'상세 해석',fortune:'운세',compatibility:'궁합 시연',elements:'오행 산책',character:'일주 캐릭터',chat:'AI 상담'}[view]);
   try{history.replaceState(null,'','#'+view)}catch(e){}
   window.scrollTo({top:0,behavior:'instant'});
 }
@@ -40,6 +40,48 @@ const fortunes={
  tojeong:['☾','새해의 토정비결','사주와는 다른 전통 계산법으로 한 해와 음력 열두 달을 읽어요.','토정비결은 괘수를 산출하고 원문·현대어 풀이를 연결하는 독립 콘텐츠예요. 원문 판본/저작권/윤달 규칙을 검증한 후 출시합니다.','P1 화면 시안 / P2 계산 구현 제안 · 실제 괘 계산 없음']
 };
 $$('[data-fortune]').forEach(btn=>btn.addEventListener('click',()=>{const f=fortunes[btn.dataset.fortune];$$('[data-fortune]').forEach(b=>b.classList.toggle('active',b===btn));$('#fortune-mark').textContent=f[0];$('#fortune-title').textContent=f[1];$('#fortune-lead').textContent=f[2];$('#fortune-description').textContent=f[3];$('#fortune-footnote').textContent=f[4]}));
+// v1.0: 오행 테마는 실제 명식 분석이 아닌 일반 개념을 보여주는 UI 시연입니다.
+// DOM 상태를 동기적으로 전환하므로 빠른 연속 선택에도 마지막 선택이 유지됩니다.
+const elementEntries = [
+  {id:'wood',icon:'🌱',title:'목(木) · 자라나는 힘',badge:'목(木)의 작은 숲',lead:'새싹과 나무가 자라는 모습으로 성장과 뻗어감을 상징해요.',description:'목은 봄, 새싹, 나무 같은 이미지와 연결해 설명하는 전통적 오행 분류입니다. 오행은 각각 따로 존재하기보다 서로의 관계 속에서 해석합니다.',guide:'선택한 목은 일반 개념을 설명한 것이에요. 나의 실제 오행 구성은 검증된 명식 계산 후 확인할 수 있어요.'},
+  {id:'fire',icon:'✺',title:'화(火) · 퍼지는 온기',badge:'화(火)의 따뜻한 불빛',lead:'따뜻한 빛과 불꽃이 퍼져 나가는 모습으로 열기와 발산을 상징해요.',description:'화는 여름, 빛, 열기처럼 바깥으로 퍼지는 이미지를 나타내는 전통적인 오행 분류입니다. 성격이나 운세를 하나의 오행만으로 단정하지 않아요.',guide:'화 테마는 상징을 이해하기 위한 시연이에요. 실제 개인별 해석과는 연결되어 있지 않아요.'},
+  {id:'earth',icon:'✿',title:'토(土) · 머무는 바탕',badge:'토(土)의 포근한 언덕',lead:'흙과 언덕이 생명을 받쳐 주는 모습으로 안정과 바탕을 상징해요.',description:'토는 땅과 계절의 변화를 받쳐 주는 이미지로 설명되는 전통적 오행 분류입니다. 토가 많거나 부족하다는 개인 판단은 명식 계산 없이 할 수 없어요.',guide:'지금 보이는 토의 풍경은 일반적 상징이에요. 개인의 강점이나 약점을 평가한 결과가 아니에요.'},
+  {id:'metal',icon:'✧',title:'금(金) · 맑고 단단한 빛',badge:'금(金)의 은빛 별 조각',lead:'은빛 결정과 맑은 종소리처럼 선명함과 단단함을 상징해요.',description:'금은 금속이나 가을의 맑고 단단한 이미지를 떠올리게 하는 전통적 오행 분류입니다. 그 의미는 다른 요소와의 관계에 따라 달라질 수 있어요.',guide:'이 그림은 금의 대표적인 이미지를 시각화했어요. 개인의 성향을 판정하지 않아요.'},
+  {id:'water',icon:'≈',title:'수(水) · 흐르는 물결',badge:'수(水)의 고요한 물결',lead:'물줄기와 호수처럼 흐름과 깊이를 상징해요.',description:'수는 겨울, 물, 흘러가는 움직임과 연결해 설명하는 전통적인 오행 분류입니다. 실제 해석에서는 다른 요소와의 관계를 함께 고려합니다.',guide:'수의 색과 풍경은 시각적 설명이에요. 실제 나의 사주 구성 결과가 아니에요.'}
+];
+const elementMap=new Map(elementEntries.map((entry,index)=>[entry.id,{...entry,index}]));
+const elementButtons=$$('[data-element]');
+function selectElement(id,moveFocus=false){
+  const record=elementMap.get(id);if(!record)return;
+  elementButtons.forEach(button=>{
+    const isActive=button.dataset.element===id;
+    button.classList.toggle('is-active',isActive);
+    button.setAttribute('aria-selected',String(isActive));
+    button.tabIndex=isActive?0:-1;
+    if(isActive&&moveFocus)button.focus();
+  });
+  const stage=$('#element-stage');stage.dataset.elementTheme=id;
+  $$('[data-scene]').forEach(img=>img.classList.toggle('is-current',img.dataset.scene===id));
+  $('#element-stage-badge').textContent='✦ '+record.badge;
+  $('#element-large-icon').textContent=record.icon;
+  $('#element-title').textContent=record.title;
+  $('#element-lead').textContent=record.lead;
+  $('#element-description').textContent=record.description;
+  $('#element-guidance').textContent=record.guide;
+  $('#element-detail').setAttribute('aria-labelledby','element-tab-'+id);
+}
+elementButtons.forEach((button,index)=>{
+  button.addEventListener('click',()=>selectElement(button.dataset.element));
+  button.addEventListener('keydown',event=>{
+    let next=null;
+    if(event.key==='ArrowRight'||event.key==='ArrowDown')next=(index+1)%elementButtons.length;
+    if(event.key==='ArrowLeft'||event.key==='ArrowUp')next=(index-1+elementButtons.length)%elementButtons.length;
+    if(event.key==='Home')next=0;
+    if(event.key==='End')next=elementButtons.length-1;
+    if(next!==null){event.preventDefault();selectElement(elementButtons[next].dataset.element,true);}
+  });
+});
+
 $$('[data-color]').forEach(btn=>btn.addEventListener('click',()=>{const cl=$('#character-sprite');cl.className='character-sprite '+btn.dataset.color;$$('[data-color]').forEach(b=>b.classList.toggle('active',b===btn))}));
 function appendMessage(text,who){const div=document.createElement('div');div.className='chat-bubble '+who;div.textContent=text;$('#chat-list').append(div);$('#chat-list').scrollTop=$('#chat-list').scrollHeight}
 $('#chat-form').addEventListener('submit',e=>{e.preventDefault();const input=$('#chat-text');const q=input.value.trim();if(!q)return;appendMessage(q,'user');appendMessage('시안 안내: 실제 AI와 연동되지 않아 입력 문장을 분석하거나 사주를 풀이하지 않습니다. 완성 서비스에서는 선택한 주제(현재: '+(topics[lastTopic]?.[0]||'미선택')+')와 검증된 명식 데이터를 연결하고, 해석 근거와 불확실성을 분리해 답변할 예정입니다.','assistant');input.value='';});
@@ -60,19 +102,48 @@ $$('[data-term]').forEach(btn=>btn.addEventListener('click',()=>{
   const record=termDictionary[btn.dataset.term]; if(!record)return;
   lastTermTrigger=btn;
   $('#term-title').textContent=record[0];$('#term-basic').textContent=record[1];$('#term-deep').textContent=record[2];
-  $('#term-deep').hidden=true;$('#term-deep-toggle').setAttribute('aria-expanded','false');
+  setTermDeepState(false);
   termDialog.showModal();$('#close-term').focus();
 }));
 $('#close-term').addEventListener('click',()=>termDialog.close());
-$('#term-deep-toggle').addEventListener('click',()=>{const el=$('#term-deep');el.hidden=!el.hidden;$('#term-deep-toggle').setAttribute('aria-expanded',String(!el.hidden));});
+function setTermDeepState(expanded){
+  const content=$('#term-deep');
+  const toggle=$('#term-deep-toggle');
+  content.hidden=!expanded;
+  toggle.setAttribute('aria-expanded',String(expanded));
+  toggle.querySelector('span:first-child').textContent=expanded?'전문가 심화 설명 접기':'전문가 심화 설명 보기';
+  toggle.querySelector('span[aria-hidden="true"]').textContent=expanded?'⌃':'⌄';
+}
+$('#term-deep-toggle').addEventListener('click',()=>setTermDeepState($('#term-deep').hidden));
 termDialog.addEventListener('close',()=>{if(lastTermTrigger)lastTermTrigger.focus();});
 
 // v0.9: 궁합 인터랙티브 목업. 브라우저 메모리의 가상 입력만 사용, 전송·저장·계산 없음.
+// 관계별 결과 카드는 실제 사주 분석이 아니라 탐색용 대화 질문 시안입니다.
 const relationshipData = {
-  dating:['연인', ['감정 표현 방식','서로 편한 점','갈등 시 반응','대화 팁']],
-  spouse:['배우자',['생활과 의사소통','협력 방식','의견 차이','장기 관계 팁']],
-  family:['가족',['표현 방식','서로 기대하는 점','거리감과 갈등','이해와 대화 팁']],
-  friend:['친구',['친해지는 방식','함께하는 강점','불편해지는 상황','관계 유지 팁']]
+  dating: ['연인', [
+    ['감정 표현 방식','서로 애정을 표현할 때 편한 방식이 무엇인지 이야기해 보세요.'],
+    ['서로 편한 점','같이 있을 때 마음이 편했던 순간을 서로 공유해 보세요.'],
+    ['갈등 시 반응','의견이 다를 때 각자 필요한 시간과 대화 순서를 확인해 보세요.'],
+    ['대화 팁','서운함을 설명할 때 상대 평가 대신 구체적인 상황부터 말해 보세요.']
+  ]],
+  spouse: ['배우자', [
+    ['생활과 의사소통','일상에서 대화하고 싶은 시간과 생활 리듬을 서로 확인해 보세요.'],
+    ['협력 방식','가사와 중요한 결정에서 각자가 기대하는 역할을 정리해 보세요.'],
+    ['의견 차이','먼저 합의할 문제와 천천히 조율할 문제를 나눠 보세요.'],
+    ['장기 관계 팁','오랫동안 지키고 싶은 생활의 약속을 주기적으로 점검해 보세요.']
+  ]],
+  family: ['가족', [
+    ['표현 방식','고마움이나 서운함을 어떤 말로 들으면 좋은지 서로 이야기해 보세요.'],
+    ['서로 기대하는 점','서로에게 바라는 도움과 존중받고 싶은 경계를 확인해 보세요.'],
+    ['거리감과 갈등','개인의 시간과 공간을 어떻게 존중할지 함께 정해 보세요.'],
+    ['이해와 대화 팁','부탁은 짧고 분명하게, 대답은 충분히 듣는 연습을 해 보세요.']
+  ]],
+  friend: ['친구', [
+    ['친해지는 방식','연락 빈도와 함께하고 싶은 활동이 어떻게 다른지 알아보세요.'],
+    ['함께하는 강점','함께해서 좋았던 일과 서로 고마웠던 순간을 나눠 보세요.'],
+    ['불편해지는 상황','약속이나 농담에서 불편한 기준이 있는지 확인해 보세요.'],
+    ['관계 유지 팁','자주 만나지 못할 때도 편한 연락 방식을 함께 찾아보세요.']
+  ]]
 };
 let selectedRelationship=null;
 function showCompatStep(n){
@@ -88,16 +159,46 @@ $('#compat-go-input').addEventListener('click',()=>{if(selectedRelationship)show
 $('#compat-back-1').addEventListener('click',()=>showCompatStep(1));
 $('#compat-back-2').addEventListener('click',()=>showCompatStep(2));
 $('#compat-reset').addEventListener('click',()=>{showCompatStep(1);});
+// 제출 오류가 생기면 어느 사람의 날짜를 수정해야 하는지 입력칸 가까이에서 안내합니다.
+function validateCompatDate(id, errorId, name){
+  const input=$(id), message=$(errorId);
+  const valid=Boolean(input.value) && input.validity.valid;
+  message.hidden=valid;
+  message.textContent=valid?'':name+'의 생년월일을 확인해 주세요.';
+  input.setAttribute('aria-invalid',String(!valid));
+  return valid;
+}
+for(const [inputId,errorId,name] of [
+  ['#compat-date-a','#compat-date-a-error','나(A)'],
+  ['#compat-date-b','#compat-date-b-error','상대방(B)']
+]){
+  $(inputId).addEventListener('input',()=>{
+    validateCompatDate(inputId,errorId,name);
+    if($('#compat-date-a').value && $('#compat-date-b').value){
+      $('#compat-error').hidden=true;
+    }
+  });
+}
 $('#compat-input-form').addEventListener('submit',e=>{
   e.preventDefault();
-  const a=$('#compat-date-a').value,b=$('#compat-date-b').value;
-  const err=$('#compat-error');
-  if(!a||!b||!Number.isFinite(Date.parse(a))||!Number.isFinite(Date.parse(b))){err.textContent='나와 상대방의 가상 날짜를 모두 입력해 주세요.';err.hidden=false;return;}
+  const validA=validateCompatDate('#compat-date-a','#compat-date-a-error','나(A)');
+  const validB=validateCompatDate('#compat-date-b','#compat-date-b-error','상대방(B)');
+  if(!validA || !validB){
+    const err=$('#compat-error');
+    err.textContent='표시된 날짜 입력칸을 확인해 주세요.';err.hidden=false;
+    (validA?$('#compat-date-b'):$('#compat-date-a')).focus();
+    return;
+  }
+  $('#compat-error').hidden=true;
   if(!selectedRelationship){showCompatStep(1);return;}
   const [name,sections]=relationshipData[selectedRelationship];
   $('#compat-result-type').textContent=name+' 궁합 · 콘텐츠 시연';
   const box=$('#compat-result-sections');box.replaceChildren();
-  const helper=['서로 다를 수 있는 방식을 가정하고 대화 질문을 제안하는 영역이에요.', '상대가 편하다고 느끼는 상황을 서로 직접 확인해 보세요.', '의견이 다를 때 먼저 듣고 싶은 말을 구체적으로 물어보세요.', '정답을 내리기보다 함께 시도할 작은 행동을 정해 보세요.'];
-  sections.forEach((title,i)=>{const article=document.createElement('article');article.className='compat-result-card';const h3=document.createElement('h3');h3.textContent=('0'+(i+1))+'  '+title;const p=document.createElement('p');p.textContent=helper[i];article.append(h3,p);box.append(article);});
+  sections.forEach(([title,question],i)=>{
+    const article=document.createElement('article');article.className='compat-result-card';
+    const h3=document.createElement('h3');h3.textContent=('0'+(i+1))+'  '+title;
+    const p=document.createElement('p');p.textContent=question;
+    article.append(h3,p);box.append(article);
+  });
   showCompatStep(3);
 });
