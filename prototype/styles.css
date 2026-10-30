@@ -352,3 +352,45 @@ body{background:#faf7fb}
 @media(prefers-reduced-motion:reduce){
   .element-character{transition:none!important;transform:translate(-50%,0)!important}
 }
+
+/* v1.2 | Each element uses one complete full-bleed illustration.
+   Previous stacked SVG scenery and separate character overlay are no longer used. */
+.element-stage{
+  min-height:530px;
+  background:#f4eee8;
+  border:1px solid rgba(211,201,222,.55);
+  overflow:hidden;
+}
+.element-scene-gallery{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+}
+.element-full-scene{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  opacity:0;pointer-events:none;display:block;
+  transition:opacity .58s ease;
+}
+.element-full-scene.is-current{opacity:1}
+.element-stage-badge{
+  z-index:2;color:#393151;background:rgba(255,252,249,.9);
+  border:1px solid rgba(255,255,255,.8);
+}
+.element-stage-footnote{
+  z-index:2;left:50%;right:auto;bottom:14px;transform:translateX(-50%);
+  width:max-content;max-width:calc(100% - 28px);
+  padding:7px 12px;border-radius:100px;
+  color:#4c4161;background:rgba(255,252,249,.85);
+  font-size:10px;line-height:1.4;text-shadow:none;
+  box-shadow:0 4px 20px rgba(50,45,69,.08);
+}
+@media(max-width:900px){
+  .element-stage{min-height:510px;aspect-ratio:.9}
+}
+@media(max-width:720px){
+  .element-stage{min-height:410px;aspect-ratio:.9}
+  .element-stage-badge{top:14px;left:14px;padding:8px 12px;font-size:11px}
+  .element-stage-footnote{font-size:9px;white-space:normal;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .element-full-scene{transition:none!important}
+}
