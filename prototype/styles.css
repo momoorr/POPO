@@ -325,3 +325,30 @@ body{background:#faf7fb}
   .storybook-hero .hero-rabbit-art,.storybook-hero .cosmic-points i,.storybook-cloud,.element-mascot{animation:none!important}
   .element-scene,.element-stage,.element-tab{transition:none!important}
 }
+
+
+/* v1.1 — Five unique storybook poses: the character changes with the scenery.
+   No circular sticker frame. Keep visuals decorative and textual interpretation separate. */
+.element-character-layer{
+  position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+}
+.element-character{
+  position:absolute;left:50%;bottom:-5%;height:min(104%,490px);width:auto;
+  max-width:82%;object-fit:contain;opacity:0;
+  transform:translate(-50%,12px) scale(.97);
+  transition:opacity .33s ease,transform .48s cubic-bezier(.2,.75,.25,1);
+  filter:drop-shadow(0 18px 24px rgba(55,48,89,.07));
+  pointer-events:none;
+}
+.element-character.is-current{opacity:1;transform:translate(-50%,0) scale(1)}
+.element-stage-badge{z-index:3}
+.element-stage-footnote{z-index:3}
+@media(max-width:900px){
+  .element-character{height:min(107%,440px);max-width:85%}
+}
+@media(max-width:720px){
+  .element-character{height:min(110%,360px);max-width:83%;bottom:-5%}
+}
+@media(prefers-reduced-motion:reduce){
+  .element-character{transition:none!important;transform:translate(-50%,0)!important}
+}

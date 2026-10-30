@@ -62,6 +62,16 @@ function selectElement(id,moveFocus=false){
   });
   const stage=$('#element-stage');stage.dataset.elementTheme=id;
   $$('[data-scene]').forEach(img=>img.classList.toggle('is-current',img.dataset.scene===id));
+  // Changing the selected element updates pose AND scenery together; no circular repeated mascot.
+  $$('[data-element-character]').forEach(img=>img.classList.toggle('is-current',img.dataset.elementCharacter===id));
+  const poses={
+    wood:'새싹 화분을 든 포포와 작은 숲',
+    fire:'반짝이는 별빛을 손으로 맞이하는 포포와 따뜻한 노을',
+    earth:'흙과 씨앗을 품은 포포와 포근한 언덕',
+    metal:'맑은 수정을 두 손으로 든 포포와 은빛 별',
+    water:'물결 위에서 눈을 감고 쉬는 포포와 달빛 호수'
+  };
+  stage.setAttribute('aria-label',record.title+' 풍경: '+poses[id]);
   $('#element-stage-badge').textContent='✦ '+record.badge;
   $('#element-large-icon').textContent=record.icon;
   $('#element-title').textContent=record.title;
