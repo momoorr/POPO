@@ -1,0 +1,19 @@
+/* v1.3: bounded calculation-engine trial; unrelated demo content remains unchanged. */
+.birth-dialog{max-height:min(92vh,850px);overflow-y:auto}
+.calc-beta-separator{border-top:1px solid #e8e1f0;margin:18px 0 12px}
+.calc-beta-note{font-size:12px;line-height:1.7;color:#695c7b;margin:8px 0 15px}
+.calc-beta-trigger{width:100%;border:1px solid #9d88cb;border-radius:13px;background:#faf5ff;color:#453365;padding:14px 12px;font-weight:800;cursor:pointer}
+.calc-beta-trigger:hover{background:#eee5fa}
+.calc-beta-output{border-radius:15px;padding:17px;margin-top:14px;border:1px solid #e1d7ed;background:#faf7fd;color:#453b5d}
+.calc-beta-output[data-state='error']{background:#fff0f3;border-color:#e9bac4;color:#93334e}
+.calc-beta-message{font-size:12px;font-weight:750;line-height:1.7;margin:0 0 12px}
+.calc-beta-pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0 0 12px;padding:0}
+.calc-beta-pillars li{background:#fff;border:1px solid #e7e0ef;border-radius:10px;padding:9px 11px;font-size:14px}
+.calc-beta-counts,.calc-element-values{display:flex;flex-wrap:wrap;gap:7px}
+.calc-element-chip{font-size:12px;font-weight:700;border-radius:10px;padding:8px 10px;color:#4b4475;background:#f1eafd;border:1px solid #e0d4f4}
+.calc-beta-explore{margin-top:12px;width:100%;border-radius:11px;padding:11px 13px;background:#3b336b;color:white;border:0;font-weight:800;cursor:pointer}
+.calc-beta-explain{font-size:11px;line-height:1.75;color:#756d82;margin:10px 0 0}
+.calc-element-summary{border:1px solid #d5c6e9;border-radius:18px;background:#fcf8ff;padding:18px;margin:0 0 19px}
+.calc-element-summary h2{font-size:17px;margin:0 0 7px;letter-spacing:-.3px}
+.calc-element-summary p{font-size:12px;color:#605975;line-height:1.75;margin:0 0 10px}
+@media(max-width:450px){.calc-beta-pillars{grid-template-columns:1fr}.calc-beta-output{padding:14px}}

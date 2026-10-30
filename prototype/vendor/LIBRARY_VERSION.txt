@@ -1,0 +1,4 @@
+version=1.7.7
+source=https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.min.js
+sha256=92BB2BFFC2D422FF00BDED9D8EF8083DCA31D0564BA7A92A49D08520C4EF3845
+license=MIT
