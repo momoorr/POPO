@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>POPO Stage 2 | 사주 계산 후보 날짜 검증</title>
+  <style>
+    :root{font-family:system-ui,"Malgun Gothic",sans-serif;color:#242b49;background:#f8f6ff}
+    *{box-sizing:border-box}main{max-width:880px;margin:36px auto;padding:0 20px 60px}
+    h1{font-size:clamp(22px,4vw,34px);line-height:1.35}
+    .card{background:white;border:1px solid #e3e0ef;border-radius:20px;padding:20px;box-shadow:0 7px 22px #242b490a}
+    .notice{line-height:1.8;background:#fff3ea;border-left:4px solid #dc8f6c;border-radius:12px;padding:12px 16px;margin-bottom:22px}
+    #summary{font-size:20px;font-weight:750;margin:14px 0 24px}
+    #summary[data-state=pass]{color:#15694b}#summary[data-state=fail]{color:#ab3646}
+    ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    li{border:1px solid #e4e3ef;border-radius:12px;padding:13px 15px;display:grid;gap:6px}
+    li[data-state=pass]{border-left:4px solid #2c9b73}li[data-state=fail]{border-left:4px solid #bc4658}
+    small{font-size:12px;line-height:1.6;color:#565a70;overflow-wrap:anywhere}
+    #scope{font-size:13px;color:#6a6780;line-height:1.7}
+    a{color:#58519c}p{line-height:1.8}
+  </style>
+  <script src="../prototype/vendor/lunar.min.js" defer></script>
+  <script src="../prototype/calc-core.js" defer></script>
+  <script src="calendar-reference-fixtures.js" defer></script>
+  <script src="calendar-reference-check.js" defer></script>
+  <script src="calendar-reference-browser.js" defer></script>
+</head>
+<body>
+  <main>
+    <p><a href="../prototype/index.html">← POPO 웹 화면</a></p>
+    <h1>POPO 사주 계산 후보 · 외부 날짜 대조</h1>
+    <p class="notice"><b>개발용 QA 페이지입니다.</b> 이 결과는 개인 사주 원국의 정확성을 보증하지 않습니다. 독립 자료의 연·월·일주 일부와 비교하며, <b>시주·절기 순간·한국 지역 시간 보정은 아직 검증 전</b>입니다. 이름·개인 생년월일은 입력하지 않습니다.</p>
+    <section class="card" aria-live="polite">
+      <div id="summary">기준 자료와 후보 계산기를 점검하는 중…</div>
+      <p id="scope"></p>
+      <ol id="results"></ol>
+    </section>
+    <p>출처: <a href="https://datedb.net/tool/conversion/solar_to_lunar/20000101/">2000년 1월</a> · <a href="https://datedb.net/tool/conversion/solar_to_lunar/20000210/">2월</a> · <a href="https://datedb.net/tool/conversion/solar_to_lunar/20000310/">3월</a>. 국가 기관 1차 자료 직접 대조는 별도 작업입니다.</p>
+  </main>
+</body>
+</html>
