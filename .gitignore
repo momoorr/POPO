@@ -1,0 +1,12 @@
+# Private configuration and usage / local test artifacts
+.env
+**/.env
+.env.*
+!**/.env.example
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/*.sqlite3
+**/*.sqlite3-*
+.pytest_cache/
+.DS_Store
