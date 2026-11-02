@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>POPO Stage 2B | 시주 시두법 검증</title>
+<style>
+:root{font-family:system-ui,"Malgun Gothic",sans-serif;color:#242b49;background:#f8f6ff}*{box-sizing:border-box}main{max-width:880px;margin:36px auto;padding:0 20px 64px}h1{font-size:clamp(24px,4vw,34px);line-height:1.35}p{line-height:1.85}a{color:#58519c}.notice{line-height:1.8;background:#fff3ea;border-left:4px solid #dc8f6c;border-radius:12px;padding:13px 18px;margin-bottom:22px}.card{background:#fff;border:1px solid #e3e0ef;border-radius:20px;padding:20px;box-shadow:0 7px 22px #242b490a}#summary{font-size:20px;font-weight:750;margin:14px 0 22px}#summary[data-state=pass]{color:#15694b}#summary[data-state=fail]{color:#ab3646}ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}li{border:1px solid #e4e3ef;border-radius:12px;padding:12px 15px;display:grid;gap:5px;overflow-wrap:anywhere}li[data-state=pass]{border-left:4px solid #2c9b73}li[data-state=fail]{border-left:4px solid #bc4658}small{font-size:12px;line-height:1.6;color:#565a70}#scope{font-size:13px;color:#6a6780}
+</style>
+<script src="../prototype/vendor/lunar.min.js" defer></script>
+<script src="../prototype/calc-core.js" defer></script>
+<script src="calendar-reference-fixtures.js" defer></script>
+<script src="hour-pillar-reference.js" defer></script>
+<script src="hour-pillar-browser.js" defer></script>
+</head><body><main>
+<p><a href="calendar-reference-check.html">← 이전 26건 검증 화면</a></p>
+<h1>POPO 사주 계산 후보 · 시주 규칙 대조</h1>
+<p class="notice"><b>개발용 시험입니다.</b> 외부 날짜 자료의 <b>일주</b>와 전통 <b>시두법</b>을 결합해 2000년의 12개 날짜에서 시주를 비교합니다. <b>한국 표준시(KST)를 보정 없이 그대로 적용한다는 임시 가정</b>이며, 지역 경도 보정·자시(23:00~00:59)·절입 시각·역법 공식 정확성은 검증하지 않습니다.</p>
+<section class="card" aria-live="polite"><div id="summary">시두법 규칙 확인 중…</div><p id="scope"></p><ol id="groups"></ol></section>
+<p>시두법 참고: <a href="https://encykorea.aks.ac.kr/Article/E0025957">한국민족문화대백과사전 — 사주</a>. 날짜별 연·월·일주 비교 기준은 <a href="calendar-reference-check.html">Stage 2 자료</a>와 동일합니다.</p>
+</main></body></html>
