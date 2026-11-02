@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#242e59">
+  <title>POPO Stage 2D | 한국 절기/출생 시각 분리 시험</title>
+  <style>
+    :root{font-family:system-ui,"Malgun Gothic",sans-serif;color:#202c50;background:#f7f5ff}
+    *{box-sizing:border-box}main{max-width:920px;margin:35px auto;padding:0 18px 55px}
+    h1{font-size:clamp(23px,4.5vw,33px);line-height:1.45}
+    a{color:#6555a8}p{line-height:1.75}
+    .notice{background:#fff3e9;border-left:4px solid #cf875f;border-radius:13px;padding:16px 18px}
+    .warning{background:#fff0f1;color:#942c49;border:1px solid #f5d8df;border-radius:12px;padding:14px 16px;font-weight:650}
+    .card{background:#fff;border:1px solid #e8e2f1;border-radius:20px;padding:21px}
+    #summary{font-weight:800;font-size:19px}#summary[data-status="pass"]{color:#117253}#summary[data-status="fail"]{color:#c33e56}
+    #scope{font-size:13px;color:#595f77}
+    ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    li{border:1px solid #e9e6f0;border-left:4px solid #3e9e74;border-radius:12px;padding:13px 15px;display:grid;gap:6px;overflow-wrap:anywhere}
+    li[data-status="fail"]{border-left-color:#d7485f}li small{font-size:12px;line-height:1.7;color:#5b6074}
+  </style>
+  <script defer src="../prototype/vendor/lunar.min.js"></script>
+  <script defer src="solar-term-kasi-2026-fixtures.js"></script>
+  <script defer src="kst-dual-clock-candidate.js"></script>
+  <script defer src="kst-dual-clock-browser.js"></script>
+</head>
+<body><main>
+  <p><a href="../prototype/index.html">← POPO 웹 화면</a></p>
+  <h1>POPO 사주 계산 후보 · KST 시각 분리 시험</h1>
+  <p class="notice"><b>Stage 2D 개발용 QA 전용</b>입니다. 2026년 한국천문연구원 자료의 12개 주요 절기 경계에서 연·월주 조회 시각과 출생 시각의 분리 방법을 검사합니다. 현재 POPO 명식 계산, AI Agent, 실제 사용자 입력에는 이 시험값을 사용하지 않습니다.</p>
+  <p class="warning">주의: 여기서 PASS가 나와도 한국 지역 경도 보정, 자시·날짜 경계, 역사적인 표준시, 음력 윤달, 다른 연도와 사주 전체의 정확성은 검증되지 않습니다. 시차 60분을 출생 시각 전체에 일괄 적용하지 않습니다.</p>
+  <section class="card" aria-live="polite">
+    <p id="summary">테스트 중…</p><p id="scope"></p><ol id="results"></ol>
+  </section>
+  <p>근거: <a href="https://astro.kasi.re.kr/life/post/calendarData?search_year=2026">한국천문연구원 2026년 달력자료</a>. 게시 자료는 별도의 공식 월력요항과 구분됩니다. 12개 절입의 발표 시각은 분 단위입니다.</p>
+</main></body>
+</html>
