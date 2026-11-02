@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from chart_service import get_saju_chart
+from chart_service import ChartProbeError, calculate_probe, get_saju_chart
 
 load_dotenv()
 
@@ -33,6 +33,16 @@ MAX_OUTPUT = max(200, min(int(os.getenv("MAX_OUTPUT_TOKENS", "1200")), 2000))
 MAX_TOOL_CALLS = max(0, min(int(os.getenv("MAX_TOOL_CALLS", "1")), 2))
 BUDGET_USD = max(0.0, float(os.getenv("MONTHLY_BUDGET_USD", "5")))
 USAGE_DB = Path(__file__).with_name("usage.sqlite3")
+
+
+class ChartProbeRequest(BaseModel):
+    """Candidate chart input, never a proof of a verified natal chart."""
+    model_config = ConfigDict(extra="forbid")
+    calendar: Literal["양력"] = "양력"
+    date: str = Field(min_length=10, max_length=10)
+    time: str = Field(min_length=5, max_length=5)
+    place: Literal["서울", "부산", "대전"]
+    unknown_time: bool = False
 
 
 class ChatTurn(BaseModel):
@@ -109,6 +119,19 @@ def serialized_output(response):
 @app.get("/health")
 def health():
     return {"status": "ok", "model": MODEL, "chart_engine": "not_verified", "stage": "local_only"}
+
+
+@app.post("/api/chart/probe")
+def chart_probe(payload: ChartProbeRequest):
+    """Local-only technical probe; never returns a verified chart_id."""
+    try:
+        return calculate_probe({
+            "calendar": payload.calendar, "date": payload.date,
+            "time": payload.time, "place": payload.place,
+            "unknownTime": payload.unknown_time,
+        })
+    except ChartProbeError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
 
 
 @app.post("/api/chat", response_model=ChatResponse)
