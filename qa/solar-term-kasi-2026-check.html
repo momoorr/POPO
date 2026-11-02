@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>POPO Stage 2C | KASI 절기 시각 검증</title>
+<style>
+:root{font-family:system-ui,'Malgun Gothic',sans-serif;background:#f7f5ff;color:#222c53}*{box-sizing:border-box}
+main{width:min(890px,100%);margin:32px auto;padding:0 18px 45px}h1{font-size:clamp(24px,5vw,34px)}a{color:#6454a5}
+.card{border-radius:20px;border:1px solid #e4dff2;background:#fff;padding:20px;box-shadow:0 9px 25px #29214b0b}
+.notice{border-radius:12px;background:#fff3e9;padding:17px;line-height:1.75;border-left:4px solid #dc895f}
+#risk{border-radius:12px;background:#fff0ed;color:#982e43;line-height:1.75;padding:14px 16px;font-size:14px;font-weight:650}
+#summary{font-size:22px;font-weight:800}#summary[data-state=pass]{color:#0a775a}#summary[data-state=fail]{color:#c03449}
+ol{display:grid;gap:9px;padding:0;list-style:none}li{border:1px solid #e5e0f2;border-left:4px solid #319671;border-radius:12px;padding:12px;display:grid;gap:6px;overflow-wrap:anywhere}
+li[data-state=fail]{border-left-color:#be3349}li span{font-size:13px;color:#686482;line-height:1.6}#scope{line-height:1.8;font-size:13px;color:#655b7f}
+</style>
+<script defer src="../prototype/vendor/lunar.min.js"></script>
+<script defer src="solar-term-kasi-2026-fixtures.js"></script>
+<script defer src="solar-term-kasi-2026-check.js"></script>
+<script defer src="solar-term-kasi-2026-browser.js"></script>
+</head>
+<body><main>
+<p><a href="../prototype/index.html">← POPO 웹 화면</a></p>
+<h1>POPO 절기 기준 검증 · Stage 2C</h1>
+<p class="notice"><b>개발·진단용 QA 페이지</b>입니다. 2026년 한국천문연구원 공개 달력자료의 24절기 시각(KST)과 미수정 lunar-javascript의 절기 시각을 비교합니다. 현재 라이브러리 결과에 1시간을 더해 <b>비교만</b>하며, 이 값을 사주 연·월·일·시주 보정에 적용하지 않습니다.</p>
+<section class="card" aria-live="polite"><p id="summary">검증 중…</p><p id="risk">경계 차이를 검사하는 중…</p><p id="scope"></p><ol id="results"></ol></section>
+<p>출처: <a href="https://astro.kasi.re.kr/kor/life/post/calendarData?year=2026">한국천문연구원 2026년 달력자료</a>. 자료 제공 페이지는 공식 월력요항과의 구분을 안내하고 있습니다. 실제 명식 정확성 검증은 아직 완료되지 않았습니다.</p>
+</main></body></html>
