@@ -8,6 +8,7 @@
   <title>포포 | 나를 읽는 AI 사주 상담 (목업)</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="calc-preview.css">
+  <link rel="stylesheet" href="calc-server-preview.css">
 </head>
 <body>
   <div class="app-shell">
@@ -233,7 +234,19 @@
       <div id="calc-beta-counts" class="calc-beta-counts"></div>
       <p class="calc-beta-explain">8글자 대표 오행 개수만 세는 단순 집계예요. 지장간·강약·용신은 계산하지 않았고 한국 역법 교차 검증도 전이에요.</p>
       <button type="button" id="calc-beta-explore" class="calc-beta-explore" hidden>오행 개념 화면에서 개수 살펴보기 →</button>
-    </section></dialog>
+    </section>
+  <section id="calc-server-local" class="calc-server-local" aria-labelledby="calc-server-heading" hidden>
+    <h3 id="calc-server-heading">FastAPI 계산 연결 시험 <span class="server-local-label">내 컴퓨터 전용</span></h3>
+    <p>로컬 서버(127.0.0.1:8000)로 입력을 전송해 계산 연결을 시험해요. 실제 개인정보 대신 기본 가상 날짜(2000-01-01)로만 테스트해 주세요.</p>
+    <button id="calc-server-trigger" class="calc-server-trigger" type="button">로컬 서버로 계산 시험하기 →</button>
+    <div id="calc-server-output" class="calc-server-output" role="status" aria-live="polite" hidden>
+      <p id="calc-server-message"></p>
+      <ul id="calc-server-pillars" class="calc-server-pillars"></ul>
+      <div id="calc-server-counts" class="calc-server-counts"></div>
+      <p class="server-guard-note">개발용 결과이며 정식 사주, 검증된 운세, AI 개인화에 사용하지 않습니다.</p>
+    </div>
+  </section>
+  </dialog>
   <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><div class="dialog-head"><h2 id="info-title">이 시안에 관하여</h2><button type="button" class="close-dialog" id="close-info" aria-label="닫기">×</button></div><p>포포 서비스 기획 포트폴리오를 위한 인터랙티브 UI 목업입니다. 검증 완료된 개인 명식 계산, AI API 연결, 토정비결 괘 산출, 60종 캐릭터 전체 개발은 아직 수행하지 않았습니다.</p><p>사주·타로·토정비결은 과학적으로 미래 예측 능력이 입증되지 않은 전통·문화 콘텐츠입니다. 의료·법률·투자 등 중요한 의사결정의 근거로 삼지 마세요.</p><button class="button outline" id="info-confirm" type="button">확인했어요</button></dialog>
   <dialog id="term-dialog" class="term-dialog" aria-labelledby="term-title">
     <div class="dialog-head"><div><p class="overline">SAJU WORDS · EASY TO DEEP</p><h2 id="term-title">명리 용어 알아보기</h2></div><button type="button" class="close-dialog" id="close-term" aria-label="용어 설명 닫기">×</button></div>
@@ -247,5 +260,6 @@
   <script src="vendor/lunar.min.js" defer></script>
   <script src="calc-core.js" defer></script>
   <script src="calc-preview.js" defer></script>
+  <script src="calc-server-preview.js" defer></script>
 </body>
 </html>
