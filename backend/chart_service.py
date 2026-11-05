@@ -31,7 +31,7 @@ def get_saju_chart() -> dict[str, Any]:
     return {
         "status": "unavailable",
         "verified": False,
-        "message": "한국 역법 기준으로 교차 검증된 사주 계산 엔진이 아직 연결되지 않았습니다.",
+        "message": "사주 계산 후보는 있지만 한국 기준 정확성 검증이 아직 끝나지 않았어. 그래서 지금은 개인 명식을 확정해서 풀이할 수 없어.",
         "pillars": None,
         "engine_version": None,
     }

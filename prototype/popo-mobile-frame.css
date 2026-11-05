@@ -1,0 +1,138 @@
+/* POPO Stage 4F — one mobile web layout on every screen.
+ * At desktop widths, the entire website is centered in a phone-width column.
+ * Actual mobile widths remain fluid to avoid zoom or horizontal overflow.
+ * Loaded LAST, after Storybook, Stage 4C/D fonts, Stage 4E.2 and Stage 4F.
+ */
+:root { --popo-app-width: 440px; }
+html { width:100%; min-width:0; overflow-x:hidden; }
+body { margin:0; min-width:0; overflow-x:hidden;
+  background:radial-gradient(circle at 12% 12%,#f6ecff 0%,transparent 32%),
+             radial-gradient(circle at 86% 82%,#fff1e7 0%,transparent 34%),#eeedf6;
+}
+.app-shell { position:relative; width:100%; max-width:var(--popo-app-width);
+  margin:0 auto; min-width:0; min-height:100dvh; overflow:hidden;
+  background:#fff9fc; box-shadow:0 0 50px rgba(39,32,80,.14); }
+.app-shell *, .app-shell *::before, .app-shell *::after { box-sizing:border-box; }
+.app-shell img, .app-shell svg { max-width:100%; }
+/* Always use the compact/mobile navigation — even on desktop. */
+.app-shell .prototype-disclaimer { min-height:28px; padding:6px 8px; font-size:9px;
+  gap:5px; letter-spacing:0; flex-wrap:wrap; line-height:1.4; }
+.app-shell .proto-spacer { font-size:9px; max-width:260px; }
+.app-shell .topbar, body:has(.view[data-panel='home'].active) .app-shell .topbar {
+  height:62px; width:100%; padding:0 16px; border:0; }
+.app-shell .topbar .desktop-nav { display:none!important; }
+.app-shell .topbar .brand { font-size:21px; min-width:0; }
+.app-shell .topbar .quiet-button { font-size:10px; padding:8px 10px; }
+.app-shell .mobile-nav { display:grid!important; position:fixed; bottom:0;
+  left:50%; right:auto; transform:translateX(-50%);
+  width:min(100%,var(--popo-app-width)); max-width:var(--popo-app-width);
+  grid-template-columns:repeat(4,minmax(0,1fr)); min-height:64px; z-index:99;
+  padding-bottom:env(safe-area-inset-bottom,0px); box-shadow:0 -3px 14px #21194414;
+  background:#fffefaeb; border-top:1px solid #eee0ed; backdrop-filter:blur(12px); }
+.app-shell .mobile-nav button { min-width:0; min-height:56px; font-size:11px;
+  padding:6px 2px; flex-direction:column; gap:3px; }
+.app-shell .mobile-nav button span { font-size:20px; line-height:1.1; }
+.app-shell .view.inner-view { width:100%; max-width:100%; padding:28px 14px calc(94px + env(safe-area-inset-bottom,0px)); min-height:0; }
+.app-shell .page-intro h1 { font-size:clamp(23px,6vw,30px); line-height:1.3; }
+.app-shell .page-intro p { line-height:1.7; }
+.app-shell .inline-notice { font-size:11px; padding:12px; }
+/* Single illustration view based on the approved 4E.2 mobile scene. */
+.app-shell .view[data-panel='home'] .hero.popo-board-landing {
+  display:flex; flex-direction:column; width:calc(100% - 12px); margin:0 6px;
+  min-height:750px; padding:105px 20px 24px; gap:0; border-radius:19px;
+  background-image:linear-gradient(180deg,rgba(9,20,67,.5) 0%,rgba(14,22,70,.36) 30%,rgba(20,26,79,.05) 53%,transparent 77%),
+    url('assets/popo-unified-hero-mobile.webp');
+  background-size:100% 100%,cover; background-position:center,center 54%;
+}
+.app-shell .view[data-panel='home'] .popo-board-landing .hero-left {
+  width:100%; max-width:100%; align-self:flex-start; padding:0; grid-row:auto; grid-column:auto; z-index:5; }
+.app-shell .view[data-panel='home'] .popo-board-landing #home-title {
+  font-size:clamp(31px,8.5vw,40px); line-height:1.25; margin:0 0 12px;
+  max-width:340px; text-wrap:balance; }
+.app-shell .view[data-panel='home'] .popo-board-landing .hero-desc {
+  font-size:12px; line-height:1.8; margin:0 0 15px; max-width:350px; }
+.app-shell .view[data-panel='home'] .popo-board-landing .hero-cta {justify-content:flex-start;}
+.app-shell .view[data-panel='home'] .popo-board-landing #open-birth {
+  min-height:50px; padding:14px 19px; font-size:14px; }
+.app-shell .view[data-panel='home'] .popo-board-landing .hero-right,
+.app-shell .view[data-panel='home'] .popo-board-landing .popo-board-left-flowers,
+.app-shell .view[data-panel='home'] .popo-board-landing .storybook-cloud {display:none!important;}
+.app-shell .view[data-panel='home'] .feature-section {padding:36px 14px 95px; width:100%;}
+.app-shell .view[data-panel='home'] .features-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.app-shell .feature-card {min-width:0; min-height:200px; border-radius:19px; padding:18px 13px;}
+.app-shell .feature-name {font-size:14px;}
+.app-shell .feature-description {font-size:11px; overflow-wrap:anywhere;}
+.app-shell .feature-link {font-size:11px;}
+.app-shell .section-heading h2 {font-size:23px;}
+.app-shell .element-feature-teaser {max-width:100%; min-width:0;}
+/* The saju result, distribution and reading must ALL share one vertical flow. */
+.app-shell .view[data-panel='chart'].popo-saju-mounted {
+  width:100%;max-width:100%;padding:13px 12px calc(96px + env(safe-area-inset-bottom,0px));}
+.app-shell .popo-saju-dashboard {max-width:100%;min-width:0;}
+.app-shell .popo-saju-hero {min-height:170px; border-radius:21px; padding:20px 16px;gap:10px;}
+.app-shell .popo-saju-hero-copy {max-width:calc(100% - 111px);min-width:0;}
+.app-shell .popo-saju-hero h1 {font-size:clamp(20px,5.8vw,27px);}
+.app-shell .popo-saju-hero-rabbit {width:99px;height:99px;border-width:4px;}
+.app-shell .popo-saju-hero p:not(.popo-saju-eyebrow) {font-size:10px;line-height:1.65;}
+.app-shell .popo-saju-source {font-size:9px;padding:5px 7px;white-space:normal;}
+.app-shell .popo-saju-main {gap:13px; margin-top:-2px;}
+.app-shell .popo-saju-overview {grid-template-columns:39px minmax(0,1fr); gap:9px; padding:15px 13px;border-radius:17px;}
+.app-shell .popo-saju-summary-rabbit {width:38px;height:38px;}
+.app-shell .popo-saju-overview h2 {font-size:17px;}
+.app-shell .popo-saju-overview p:last-child {font-size:11px;}
+.app-shell .popo-saju-status {grid-column:1/-1;justify-self:start;white-space:normal;font-size:10px;padding:7px 9px;}
+.app-shell .popo-saju-grid {display:grid; grid-template-columns:minmax(0,1fr);gap:13px;}
+.app-shell .popo-saju-card, .app-shell .popo-saju-reading {border-radius:21px;padding:19px 15px;min-width:0;}
+.app-shell .popo-saju-card h2,.app-shell .popo-saju-reading h2 {font-size:20px;}
+.app-shell .popo-saju-card-head {gap:8px;margin-bottom:14px;}
+.app-shell .popo-pillar-row {grid-template-columns:repeat(4,minmax(0,1fr));}
+.app-shell .popo-pillar-colhead {font-size:12px;min-height:38px;}
+.app-shell .popo-pillar-cell {min-height:53px;}
+.app-shell .popo-pillar-cell strong {font-size:clamp(22px,6vw,27px);}
+.app-shell .popo-element-chart {grid-template-columns:130px minmax(0,1fr);gap:9px;min-height:145px;}
+.app-shell .popo-saju-donut {width:126px;}
+.app-shell .popo-saju-hole {min-width:76px; min-height:76px;}
+.app-shell .popo-saju-hole strong {font-size:14px;}
+.app-shell .popo-saju-element-grid {gap:5px;min-width:0;}
+.app-shell .popo-element-stat {font-size:10px;padding:6px 2px;min-height:40px;}
+.app-shell .popo-saju-cta {display:flex;flex-direction:column;align-items:stretch;gap:9px;}
+.app-shell .popo-saju-cta button {width:100%;min-height:48px;}
+.app-shell .popo-saju-dialog {max-width:calc(100vw - 18px);width:min(420px,calc(100% - 18px));max-height:90dvh;}
+/* The five-element screen is the same one-column mobile view everywhere. */
+.app-shell .view[data-panel='elements'].popo-elements-mounted {width:100%;max-width:100%;padding:24px 12px 100px;}
+.app-shell .popo-elements-subtabs {width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-radius:17px;gap:5px;}
+.app-shell .popo-elements-subtab {min-width:0;white-space:normal;font-size:12px;min-height:44px;padding:8px 5px;}
+.app-shell .popo-elements-mounted .element-tabs {gap:5px;margin-bottom:13px;}
+.app-shell .popo-elements-mounted .element-tab {border-radius:13px;min-height:73px;padding:6px 2px;}
+.app-shell .popo-elements-mounted .element-tab-symbol {font-size:21px;}
+.app-shell .popo-elements-mounted .element-tab strong {font-size:13px;}
+.app-shell .popo-elements-mounted .elements-layout {display:grid;grid-template-columns:minmax(0,1fr);gap:0;}
+.app-shell .popo-elements-mounted .element-stage {min-height:340px;max-height:none;border-radius:22px 22px 0 0;aspect-ratio:1.03;}
+.app-shell .popo-elements-mounted .element-copy {min-height:0;border-radius:0 0 22px 22px;padding:19px 17px;border-left:1px solid #efebf2;}
+.app-shell .popo-elements-mounted .element-stage::after {right:0;left:0;top:auto;bottom:0;height:17%;width:100%;background:linear-gradient(180deg,transparent,#fffdf955);}
+.app-shell .popo-elements-extra {padding:19px 15px;min-height:0;}
+.app-shell .popo-ratio-row {grid-template-columns:98px minmax(0,1fr);gap:8px;font-size:11px;}
+.app-shell .popo-fact-grid {grid-template-columns:1fr;}
+.app-shell .chat-surface {width:100%; margin:15px 0 0;min-height:0;}
+.app-shell .chat-list {height:350px;padding:17px;}
+.app-shell .chat-compose {flex-direction:column;padding:13px;}
+.app-shell .chat-compose input {min-width:0;width:100%;min-height:45px;font-size:16px;}
+.app-shell .chat-compose button {width:100%;min-height:45px;}
+.app-shell .chat-bubble {max-width:94%;font-size:12px;overflow-wrap:anywhere;}
+.app-shell .chart-layout, .app-shell .fortune-layout, .app-shell .character-layout {grid-template-columns:minmax(0,1fr);}
+.app-shell .footer {padding:25px 16px calc(96px + env(safe-area-inset-bottom,0px));flex-direction:column;gap:10px;}
+.birth-dialog, .info-dialog, .term-dialog, .popo-saju-dialog {
+  width:min(420px,calc(100% - 18px));max-width:calc(100vw - 18px);max-height:90dvh;overflow-y:auto;}
+.birth-dialog input,.birth-dialog select,.chat-compose input {font-size:16px;}
+/* Dialogs should stack on viewport center regardless of desktop app column. */
+@media (max-width:365px){
+  .app-shell .view[data-panel='home'] .hero.popo-board-landing{min-height:705px;padding:100px 17px 20px;}
+  .app-shell .view[data-panel='home'] .popo-board-landing #home-title{font-size:31px;}
+  .app-shell .popo-element-chart{grid-template-columns:119px minmax(0,1fr);gap:6px;}
+  .app-shell .popo-saju-donut{width:114px;}
+  .app-shell .popo-saju-hero-rabbit{width:85px;height:85px;}
+  .app-shell .popo-saju-hero-copy{max-width:calc(100% - 95px);}
+}
+@media (prefers-reduced-motion:reduce) {
+ .app-shell * {animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+}

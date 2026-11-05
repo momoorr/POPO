@@ -1,0 +1,93 @@
+/* POPO Stage 4G — phone-first header account button and floating quick navigation.
+ * Loaded after Stage 4F mobile CSS. Preserves the existing mobile-width app canvas.
+ * SVG icon only; no third-party icon/font/image assets added.
+ */
+:root { --popo-app-width:440px; }
+.app-shell .topbar { justify-content:space-between; gap:8px; }
+/* Keep the existing service-guide button functional through the account sheet. */
+.app-shell .topbar #open-privacy { display:none!important; }
+.app-shell .topbar .popo-account-trigger {
+  appearance:none;display:inline-flex!important;align-items:center;justify-content:center;
+  gap:6px;flex:0 0 auto;margin-left:auto;min-width:85px;min-height:43px;
+  border:1px solid rgba(249,231,187,.47);border-radius:999px;
+  background:rgba(254,247,232,.075);color:#fff9e9;padding:5px 10px;
+  font-family:inherit;font-size:12px;font-weight:700;line-height:1.2;
+  transition:background-color .2s,border-color .2s,transform .2s;
+}
+.app-shell .topbar .popo-account-trigger:hover {background:rgba(249,229,180,.2);border-color:#f7dfb5;}
+.app-shell .topbar .popo-account-trigger:active {transform:scale(.97);}
+.app-shell .topbar .popo-account-trigger:focus-visible,
+.popo-float-tools button:focus-visible,.popo-account-sheet button:focus-visible {
+  outline:3px solid #ffe29b;outline-offset:3px;
+}
+.popo-account-moon {width:24px;height:24px;display:block;flex:none;}
+.app-shell nav.mobile-nav {display:none!important;}
+/* No bottom fixed tab-bar. Preserve a small safe area for the floating trigger. */
+.app-shell .view.inner-view,
+.app-shell .view[data-panel='chart'].popo-saju-mounted,
+.app-shell .view[data-panel='elements'].popo-elements-mounted {
+  padding-bottom:70px;
+}
+.app-shell .view[data-panel='home'] .feature-section {padding-bottom:68px;}
+.app-shell .footer {padding-bottom:65px;}
+/* Floating menu is outside .app-shell to avoid the overflow:hidden clipping region. */
+.popo-float-tools {
+  position:fixed;z-index:110;
+  right:max(12px,calc((100vw - var(--popo-app-width))/2 + 13px));
+  bottom:calc(19px + env(safe-area-inset-bottom,0px));
+  width:fit-content;display:flex;align-items:flex-end;flex-direction:column;gap:9px;
+  pointer-events:none;
+}
+.popo-float-tools > * {pointer-events:auto;}
+.popo-float-trigger {
+  display:flex;justify-content:center;align-items:center;flex-direction:column;
+  border:1px solid rgba(255,226,162,.75);border-radius:19px;
+  background:linear-gradient(135deg,#493d89,#302959);color:#fff;
+  width:57px;height:57px;padding:6px 3px;
+  font-family:inherit;box-shadow:0 8px 24px rgba(36,24,93,.27);
+  cursor:pointer;transition:transform .2s,box-shadow .2s;
+}
+.popo-float-trigger:hover {transform:translateY(-2px);box-shadow:0 11px 30px rgba(36,24,93,.34);}
+.popo-float-glyph {font-size:23px;line-height:1;color:#ffe39d;}
+.popo-float-caption {font-size:10px;font-weight:700;margin-top:1px;}
+.popo-float-tools.has-scrolled .popo-float-trigger {background:linear-gradient(135deg,#6451a8,#342a70);}
+.popo-float-panel {
+  border:1px solid #e8ddf2;border-radius:22px;background:#fffafb;
+  box-shadow:0 16px 40px rgba(29,20,66,.23);
+  padding:10px;width:min(202px,calc(100vw - 30px));
+  display:grid;gap:3px;
+}
+.popo-float-panel[hidden] {display:none!important;}
+.popo-float-link,.popo-float-top {
+  border:0;border-radius:12px;background:transparent;color:#352b5d;
+  padding:11px 12px;width:100%;min-height:43px;display:flex;align-items:center;
+  text-align:left;gap:12px;font-family:inherit;font-size:13px;font-weight:700;
+  cursor:pointer;
+}
+.popo-float-link:hover,.popo-float-top:hover {background:#f1eafb;}
+.popo-float-link-icon {width:23px;text-align:center;color:#9175cb;font-size:17px;line-height:1;}
+.popo-float-top {justify-content:center;color:#7055ad;border-top:1px solid #eee5f3;border-radius:0 0 12px 12px;}
+.popo-float-tools.input-focused {display:none;}
+.popo-account-dialog {
+  width:min(400px,calc(100vw - 24px));max-height:min(85dvh,670px);
+  padding:0;border:1px solid #eee3f4;border-radius:27px;background:#fffaf8;
+  color:#27264b;box-shadow:0 24px 72px rgba(22,18,64,.31);
+}
+.popo-account-dialog::backdrop {background:rgba(20,16,46,.59);backdrop-filter:blur(4px);}
+.popo-account-sheet {display:flex;flex-direction:column;align-items:center;text-align:center;padding:31px 24px 27px;gap:12px;position:relative;}
+.popo-account-close {position:absolute;top:13px;right:16px;border:1px solid #e6dfeb;border-radius:50%;background:#fff;min-width:35px;min-height:35px;cursor:pointer;color:#45365c;font-size:24px;line-height:1;}
+.popo-account-mark {display:grid;place-items:center;width:75px;height:75px;border-radius:27px;background:#eee5fc;color:#8d68c8;font-size:32px;margin-top:5px;}
+.popo-account-sheet h2 {font-size:22px;line-height:1.35;color:#292450;margin:4px 0 0;}
+.popo-account-description {font-size:13px;line-height:1.95;color:#67627a;max-width:300px;margin:0;}
+.popo-account-status {font-size:11px;color:#8262b6;background:#f3edfb;border-radius:99px;padding:8px 12px;margin:1px 0 8px;}
+.popo-account-continue,.popo-account-privacy {font-family:inherit;cursor:pointer;width:100%;border-radius:14px;min-height:48px;font-size:14px;font-weight:800;}
+.popo-account-continue {border:0;background:#40336e;color:#fff;}
+.popo-account-privacy {border:1px solid #dcd1e8;background:#fffaf8;color:#544271;}
+@media (max-width:360px) {
+  .app-shell .topbar {padding-left:11px;padding-right:11px;}
+  .app-shell .topbar .popo-account-trigger {min-width:76px;padding:4px 7px;gap:4px;font-size:11px;}
+  .app-shell .topbar .popo-account-moon {width:20px;height:20px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .popo-account-trigger,.popo-float-trigger {transition:none!important;}
+}

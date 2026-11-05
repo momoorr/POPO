@@ -1,0 +1,124 @@
+/*
+ * POPO Stage 4D typography policy (local preview):
+ *   Brand wordmark only: Sabrina Star / Sabrina (locally installed font).
+ *   All other UI text: Bookk Myungjo (Bookk / Noonnu webfont CDN).
+ * No font binaries are bundled. Sabrina redistribution / web embedding not approved.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
+
+/* Exact star variant: family name from SABRINAS.TTF metadata. */
+@font-face {
+  font-family:'POPO Sabrina Star Local';
+  src:local('sabrina star'),local('Sabrina Star'),local('Sabrinastar');
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+/* Fallback if the user installed only SABRINA_.TTF. */
+@font-face {
+  font-family:'POPO Sabrina Local';
+  src:local('sabrina'),local('Sabrina');
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+
+
+/* Attribution: BOOKK Co., Ltd. - Bookk Myungjo.
+ * License: https://noonnu.cc/font_page/1084
+ * Webfont CSS: https://noonnu.cc/font_page/1084
+ * Uses CDN unchanged; no modification, subsetting, local copies, or redistribution.
+ */
+@font-face {
+  font-family:'POPO Bookk Myungjo';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Lt.woff2') format('woff2');
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+@font-face {
+  font-family:'POPO Bookk Myungjo';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+}
+
+.topbar .brand {
+  flex:0 0 auto;
+  min-width:0;
+  text-decoration:none;
+  white-space:nowrap;
+  padding:4px 0;
+  letter-spacing:normal;
+}
+.popo-logo {
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  min-height:46px;
+  max-width:100%;
+}
+.popo-logo-word {
+  display:inline-block;
+  color:#fff7fa;
+  font-family:'POPO Sabrina Star Local','POPO Sabrina Local','Henny Penny','Comic Sans MS',cursive;
+  font-size:clamp(32px,3.1vw,42px);
+  font-weight:400;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  text-shadow:0 2px 0 rgba(46,28,93,.25);
+  padding:5px 3px 1px 0;
+}
+.popo-logo-o{position:relative;display:inline-block;}
+.popo-logo-o:nth-of-type(2){transform:none;}
+.popo-logo-star-in {
+  display:none; /* Sabrina Star already includes star glyphs. */
+  font-family:Georgia,serif;
+  font-style:normal;
+  color:#ffdc91;
+  font-size:.37em;
+  line-height:1;
+  position:absolute;
+  top:38%;left:54%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  text-shadow:0 1px 2px rgba(19,25,54,.7);
+}
+.popo-logo-sparkle {
+  color:#f9d997;
+  line-height:1;
+  font-size:23px;
+  filter:drop-shadow(0 0 4px rgba(255,219,152,.35));
+}
+.popo-logo-sparkle-left{transform:rotate(-12deg) translateY(-1px);}
+.popo-logo-sparkle-right{font-size:15px;transform:translateY(-13px);margin-left:2px;}
+.topbar .brand:focus-visible {outline:2px solid #ffe6a9;outline-offset:5px;border-radius:8px;}
+.popo-footer-word {font-family:'POPO Sabrina Star Local','POPO Sabrina Local','Henny Penny','Comic Sans MS',cursive;font-size:22px;color:#8d78ba;letter-spacing:-.045em;}
+.chat-bubble {white-space:pre-wrap;overflow-wrap:anywhere;}
+.chat-bubble.assistant {line-height:1.85;}
+.chat-local-tool-note {white-space:normal;}
+@media(max-width:720px){
+  .popo-logo{min-height:36px;gap:2px;}
+  .popo-logo-word{font-size:31px;}
+  .popo-logo-sparkle{font-size:17px;}
+  .popo-logo-sparkle-right{font-size:12px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .popo-logo,.popo-logo-word,.popo-logo-sparkle{transition:none!important;animation:none!important;}
+}
+
+/* Final font routing: the POPO logo is the ONLY typographic exception.
+ * This stylesheet loads after prototype/styles.css and the local API/chat CSS.
+ * !important is intentional here because the legacy stylesheet assigns fonts
+ * directly to overlines, captions and navigation labels.
+ */
+html body,
+html body * {
+  font-family:'POPO Bookk Myungjo','BookkMyungjo','Batang','AppleMyungjo',serif !important;
+}
+html body .popo-logo-word,
+html body .popo-logo-word *,
+html body .popo-footer-word {
+  font-family:'POPO Sabrina Star Local','POPO Sabrina Local','Henny Penny','Comic Sans MS',cursive !important;
+}

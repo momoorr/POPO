@@ -1,0 +1,6 @@
+/* Stage 4B: local AI chat states. Existing POPO layout and illustrations unchanged. */
+#chat-form[data-live-mode='local-only'] button[type='submit']:disabled{opacity:.6;cursor:wait}
+#chat-form[data-live-mode='local-only'] input:disabled{opacity:.75;cursor:wait}
+.chat-bubble.chat-local-pending{color:#685b88;background:#f3eefd}
+.chat-bubble.chat-local-error{color:#87374c;background:#fff0f2;border:1px solid #e7bec9}
+.chat-local-tool-note{display:block;font-size:11px;color:#66587d;margin-top:12px;border-top:1px solid #e1dceb;padding-top:9px;line-height:1.7}

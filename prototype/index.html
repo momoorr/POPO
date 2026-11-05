@@ -9,12 +9,18 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="calc-preview.css">
   <link rel="stylesheet" href="calc-server-preview.css">
+  <link rel="stylesheet" href="chat-live-local.css">
+  <link rel="stylesheet" href="popo-friendly.css">
+  <link rel="stylesheet" href="landing-board-sync.css">
+  <link rel="stylesheet" href="saju-board.css">
+  <link rel="stylesheet" href="popo-mobile-frame.css">
+  <link rel="stylesheet" href="popo-account-nav.css">
 </head>
 <body>
   <div class="app-shell">
     <div class="prototype-disclaimer" role="status"><span class="blink-dot"></span> PORTFOLIO PROTOTYPE <span class="proto-spacer">· 실제 명식 계산 및 AI 호출이 없는 인터랙티브 목업입니다.</span></div>
     <header class="topbar">
-      <a class="brand" href="#home" data-view="home" aria-label="포포 홈"><span class="brand-star">✦</span> 포포 <span class="brand-en">POPO</span></a>
+      <a class="brand" href="#home" data-view="home" aria-label="popo 포포 홈"><span class="popo-logo" aria-hidden="true"><span class="popo-logo-sparkle popo-logo-sparkle-left">✦</span><span class="popo-logo-word">p<span class="popo-logo-o">o<span class="popo-logo-star-in">✧</span></span>p<span class="popo-logo-o">o<span class="popo-logo-star-in">✧</span></span></span><span class="popo-logo-sparkle popo-logo-sparkle-right">✧</span></span></a>
       <nav class="desktop-nav" aria-label="주요 메뉴">
         <button class="nav-btn active" data-view="home">홈</button>
         <button class="nav-btn" data-view="chart">내 사주</button>
@@ -33,7 +39,7 @@
           <div class="hero-left">
             <span class="eyebrow"><span class="tiny-sparkle">✦</span> 포포와 달빛 아래 나를 알아가는 시간</span>
             <h1 id="home-title">나를 이해하는<br><span class="accent-headline">다정한 사주 여행.</span></h1>
-            <p class="hero-desc">어려운 명리 용어는 쉽게, 궁금한 이야기는 차근차근.<br>나의 명식을 살펴보고 AI와 질문을 이어가요.</p>
+            <p class="hero-desc">어려운 명리 용어는 쉽게, 궁금한 이야기는 차근차근.<br>포포랑 함께 사주의 기본을 살펴보고, 궁금한 건 편하게 물어봐!</p>
             <div class="hero-cta">
               <button class="button primary" type="button" id="open-birth">내 사주 시작하기 <span aria-hidden="true">↗</span></button>
               <button class="button secondary" type="button" data-view="compatibility">궁합 살펴보기 <span class="demo-cta">시연용</span></button>
@@ -49,7 +55,7 @@
         </div>
 
         <section class="feature-section" aria-labelledby="features-heading">
-          <div class="section-heading"><div><p class="overline">DISCOVER POPO</p><h2 id="features-heading">궁금한 이야기, 쉽게 찾아보세요</h2><p>사주 명식에서 오늘의 기분까지. 처음에도 어렵지 않도록 준비했어요.</p></div><span class="section-sparkles">✦ ✧</span></div>
+          <div class="section-heading"><div><p class="overline">DISCOVER POPO</p><h2 id="features-heading">궁금한 이야기, 쉽게 찾아보세요</h2><p>어려운 사주 이야기라도 걱정 마. 포포가 하나씩 쉽게 풀어 줄게.</p></div><span class="section-sparkles">✦ ✧</span></div>
           <div class="features-grid">
             <button class="feature-card" type="button" data-view="chart"><span class="feature-icon lavender">☯</span><span class="feature-name">내 사주 이해하기</span><span class="feature-description">명식부터 쉬운 풀이, 심화 해설까지</span><span class="feature-link">살펴보기 ↗</span></button>
             <button class="feature-card" type="button" data-view="reading"><span class="feature-icon peach">♡</span><span class="feature-name">궁금한 주제 찾기</span><span class="feature-description">연애·재물·직업·인간관계 맞춤 탐색</span><span class="feature-link">살펴보기 ↗</span></button>
@@ -65,8 +71,8 @@
       </section>
 
       <section class="view inner-view" data-panel="chart" aria-labelledby="chart-heading" hidden>
-        <div class="page-intro"><p class="overline">MY SAJU · DEMO</p><h1 id="chart-heading">나의 사주, 한눈에</h1><p>복잡한 한자보다 먼저 의미를 이해할 수 있도록 구성했어요.</p></div>
-        <div class="inline-notice">ⓘ 이 명식은 UI 설명을 위한 <b>가상 예시</b>입니다. 실제 생년월일로 계산하지 않았어요.</div>
+        <div class="page-intro"><p class="overline">MY SAJU · DEMO</p><h1 id="chart-heading">나의 사주, 한눈에</h1><p>어려운 한자도 괜찮아. 포포랑 의미부터 하나씩 알아보자.</p></div>
+        <div class="inline-notice">ⓘ 이 명식은 화면을 보여 주기 위한 <b>가상 예시</b>야. 실제 생년월일로 계산한 결과는 아니야.</div>
         <div class="chart-layout">
           <article class="light-panel chart-panel"><div class="panel-top"><div><span class="kicker">나의 사주 명식</span><h2>명식 카드</h2></div><span class="chip">예시 데이터</span></div>
             <div class="pillars">
@@ -84,8 +90,8 @@
       </section>
 
       <section class="view inner-view elements-view" data-panel="elements" aria-labelledby="elements-heading" hidden>
-        <div class="page-intro elements-intro"><p class="overline">FIVE ELEMENTS · INTERACTIVE DEMO</p><h1 id="elements-heading">다섯 가지 오행, 다섯 가지 풍경</h1><p>오행의 전통적 상징을 포포와 함께 그림으로 알아보세요.</p></div>
-        <div class="inline-notice elements-disclaimer">ⓘ 이 화면은 <strong>일반적인 오행의 상징을 소개하는 2D 시연</strong>이에요. 개인의 오행 개수나 강약을 계산한 결과가 아닙니다.</div>
+        <div class="page-intro elements-intro"><p class="overline">FIVE ELEMENTS · INTERACTIVE DEMO</p><h1 id="elements-heading">다섯 가지 오행, 다섯 가지 풍경</h1><p>포포와 함께 그림을 보면서 오행의 상징을 알아보자!</p></div>
+        <div class="inline-notice elements-disclaimer">ⓘ 여기는 <strong>오행의 상징을 알아보는 2D 체험</strong>이야. 아직 네 오행 개수나 강약을 계산한 결과는 아니야.</div>
         <section id="calc-element-summary" class="calc-element-summary" aria-label="오행 8글자 시험 집계" hidden>
           <h2>계산 엔진 후보의 오행 개수 (검증 전)</h2>
           <p>별도로 시험한 4주 8글자의 대표 오행 개수예요. 아래 오행 풍경은 일반 개념 시연이며, 이 숫자는 오행의 강약이나 개인 운세를 뜻하지 않아요.</p>
@@ -125,7 +131,7 @@
       </section>
 
       <section class="view inner-view" data-panel="reading" aria-labelledby="reading-heading" hidden>
-        <div class="page-intro"><p class="overline">READING · DEMO</p><h1 id="reading-heading">지금 궁금한 이야기를 골라보세요</h1><p>필요한 주제부터 읽고, 더 깊이 보고 싶을 때 펼쳐보세요.</p></div>
+        <div class="page-intro"><p class="overline">READING · DEMO</p><h1 id="reading-heading">지금 궁금한 이야기를 골라 봐!</h1><p>관심 있는 이야기부터 골라 보고, 궁금하면 더 펼쳐 봐.</p></div>
         <div class="inline-notice">ⓘ 아래 내용은 구성 설명용 <b>예시 문구</b>입니다. 실제 명식 해석이 아닙니다.</div>
         <div class="topic-tabs" role="group" aria-label="사주 주제 선택">
           <button type="button" class="topic active" data-topic="life">✦ 인생 총운</button>
@@ -149,8 +155,8 @@
 
 
       <section class="view inner-view compat-view" data-panel="compatibility" aria-labelledby="compat-heading" hidden>
-        <div class="page-intro"><p class="overline">MOONLIGHT COMPATIBILITY · DEMO</p><h1 id="compat-heading">포포의 달빛 궁합</h1><p>관계 유형에 맞는 질문을 살펴보고, 실제 대화에서 확인할 부분을 찾아봐요.</p></div>
-        <div class="inline-notice">ⓘ <strong>궁합 화면 시연용</strong>입니다. 사주 계산·상대방 분석·AI 호출을 하지 않으며 입력 정보는 저장하거나 전송하지 않아요.</div>
+        <div class="page-intro"><p class="overline">MOONLIGHT COMPATIBILITY · DEMO</p><h1 id="compat-heading">포포의 달빛 궁합</h1><p>어떤 관계가 궁금해? 포포랑 서로 이야기해 볼 질문부터 찾아보자.</p></div>
+        <div class="inline-notice">ⓘ <strong>궁합 화면 체험용</strong>이야. 실제 계산이나 AI 상담은 하지 않고, 입력한 정보도 저장하거나 전송하지 않아.</div>
         <div class="compat-progress" aria-label="궁합 진행 단계"><span class="active" data-compat-progress="1">1. 관계 선택</span><span data-compat-progress="2">2. 정보 입력</span><span data-compat-progress="3">3. 예시 결과</span></div>
         <section class="compat-step" id="compat-step-1" aria-label="관계 유형 선택">
           <div class="light-panel compat-box">
@@ -191,7 +197,7 @@
       </section>
 
       <section class="view inner-view" data-panel="fortune" aria-labelledby="fortune-heading" hidden>
-        <div class="page-intro"><p class="overline">FORTUNE · CONCEPT</p><h1 id="fortune-heading">시간에 따라 달라지는 이야기</h1><p>대운, 올해 운세, 토정비결은 각각 보는 방법이 달라요.</p></div>
+        <div class="page-intro"><p class="overline">FORTUNE · CONCEPT</p><h1 id="fortune-heading">시간에 따라 달라지는 이야기</h1><p>대운, 올해 운세, 토정비결은 보는 방법이 조금씩 달라. 같이 알아보자.</p></div>
         <div class="fortune-layout">
           <div class="fortune-menu">
             <button type="button" class="fortune-choice active" data-fortune="today"><span class="fortune-emoji">☀</span><strong>오늘의 운세</strong><span>하루를 위한 가벼운 읽을거리</span></button>
@@ -212,48 +218,48 @@
       </section>
 
       <section class="view inner-view" data-panel="chat" aria-labelledby="chat-heading" hidden>
-        <div class="page-intro"><p class="overline">AI CONSULTATION · DEMO</p><h1 id="chat-heading">풀이를 읽다가, 더 궁금해지면</h1><p>선택한 카테고리와 명식에 대한 설명을 자연스럽게 이어갈 수 있도록 기획했어요.</p></div>
-        <div class="chat-surface light-panel"><div class="chat-head"><div class="assistant-avatar">✦</div><div><strong>포포 안내자</strong><span>차분하고 따뜻한 상담 · UI 시연</span></div><span class="small-tag">응답 예시</span></div>
-          <div class="chat-list" id="chat-list"><div class="chat-bubble assistant">안녕하세요. 지금은 <b>서비스 기획 시안</b>이에요. 실제 명식이나 질문을 분석하는 AI에 연결되지 않았어요.<br><br>완성 서비스에서는 질문에 먼저 답하고 명식 근거, 해석의 한계, 현실에서 함께 살펴볼 부분을 구분해 전달할 거예요.</div></div>
+        <div class="page-intro"><p class="overline">AI CONSULTATION · DEMO</p><h1 id="chat-heading">풀이를 읽다가, 더 궁금해지면</h1><p>궁금한 게 생기면 포포에게 편하게 물어봐. 하나씩 같이 살펴보자!</p></div>
+        <div class="chat-surface light-panel"><div class="chat-head"><div class="assistant-avatar">✦</div><div><strong>포포</strong><span>포포와 편하게 이야기해 · 화면 체험</span></div><span class="small-tag">응답 예시</span></div>
+          <div class="chat-list" id="chat-list"><div class="chat-bubble assistant">안녕! 난 포포야. ✦ 지금은 <b>화면 체험</b>이라 네 질문을 실제 AI가 읽지는 않아.<br><br>실제 AI 상담은 로컬 시험에서만 만날 수 있어. 아직 검증된 개인 사주 풀이는 준비 중이야.</div></div>
           <div class="prompt-pills"><button type="button" data-prompt="직업에 관한 해석을 더 알고 싶어요">직업운 더 알아보기</button><button type="button" data-prompt="올해 운세는 어떤 데이터로 계산하나요?">올해 운세의 근거</button><button type="button" data-prompt="대운과 세운의 차이가 뭐예요?">대운과 세운 차이</button></div>
-          <form id="chat-form" class="chat-compose"><label class="sr-only" for="chat-text">질문 입력</label><input type="text" id="chat-text" placeholder="궁금한 점을 써보세요 (전송되지 않는 목업)" maxlength="180"><button class="button primary dark" type="submit">질문 시안 보기 →</button></form><p class="chat-disclaimer">작성한 질문은 서버로 전송·저장되지 않습니다. 데모 응답은 실제 AI 생성이 아닙니다.</p>
+          <form id="chat-form" class="chat-compose"><label class="sr-only" for="chat-text">질문 입력</label><input type="text" id="chat-text" placeholder="궁금한 점을 써보세요 (전송되지 않는 목업)" maxlength="180"><button class="button primary dark" type="submit">질문해 보기 →</button></form><p class="chat-disclaimer">여기는 화면 체험이야. 질문은 서버로 보내거나 저장하지 않고, 실제 AI 답변도 아니야.</p>
         </div>
       </section>
     </main>
 
-    <footer class="footer"><span>포포 <b>✦</b> POPO</span><span>Product planning concept · 2026 · 학습/문화 콘텐츠, 실제 미래 예측 서비스 아님</span></footer>
+    <footer class="footer"><span><span class="popo-footer-word">✧ popo</span></span><span>Product planning concept · 2026 · 학습/문화 콘텐츠, 실제 미래 예측 서비스 아님</span></footer>
     <nav class="mobile-nav" aria-label="모바일 메뉴"><button data-view="home" class="active"><span>⌂</span>홈</button><button data-view="chart"><span>☯</span>내 사주</button><button data-view="fortune"><span>☾</span>운세</button><button data-view="chat"><span>✦</span>AI 상담</button></nav>
   </div>
 
-  <dialog id="birth-dialog" class="birth-dialog" aria-labelledby="birth-title"><div class="dialog-head"><div><p class="overline">GET STARTED</p><h2 id="birth-title">출생 정보 입력 시안</h2></div><button type="button" class="close-dialog" id="close-birth" aria-label="닫기">×</button></div><p class="modal-explanation">기존 「가상 명식」은 디자인 시연용이에요. 별도의 엔진 후보 시험값은 검증 전이며 정식 개인 사주 결과가 아닙니다. 실제 개인정보 대신 가상 날짜로만 시험해 주세요.</p><div class="field"><label for="calendar-type">날짜 기준</label><select id="calendar-type"><option>양력</option><option>음력</option></select></div><div class="field"><label for="birthday">생년월일</label><input id="birthday" type="date" value="2000-01-01"></div><div class="two-fields"><div class="field"><label for="birthtime">출생 시간</label><input id="birthtime" type="time" value="12:00"></div><label class="checkline"><input type="checkbox" id="unknown-time"> 출생 시간 모름</label></div><div class="field"><label for="birthplace">출생 지역</label><select id="birthplace"><option>서울 (예시)</option><option>부산 (예시)</option><option>대전 (예시)</option><option>기타 · 미확정</option></select></div><label class="checkline"><input type="checkbox" id="leap-month"> 음력 윤달 (음력 선택시 정책 검증 필요)</label><button class="button primary dark wide" id="preview-chart" type="button">가상 명식 화면 미리보기 →</button><div class="calc-beta-separator" aria-hidden="true"></div>
-    <p class="calc-beta-note"><strong>계산 엔진 기술 시험</strong> · 양력/1990~2040년/한국 표준시 가정/출생 시간 확인 등 제한된 조건에서만 시험할 수 있어요. 절기·자시·지역 보정 검증 전이므로 정식 개인 명식이 아니에요.</p>
-    <button id="calc-beta-trigger" type="button" class="calc-beta-trigger">엔진 후보 계산 시험하기 (검증 전)</button>
+  <dialog id="birth-dialog" class="birth-dialog" aria-labelledby="birth-title"><div class="dialog-head"><div><p class="overline">GET STARTED</p><h2 id="birth-title">포포에게 네 이야기 들려줘</h2></div><button type="button" class="close-dialog" id="close-birth" aria-label="닫기">×</button></div><p class="modal-explanation">지금은 화면과 계산 기능을 시험하는 중이야. 계산 후보도 아직 검증 전이라 정식 개인 사주가 아니야. 실제 생일 대신 가상 날짜로 시험해 줘.</p><div class="field"><label for="calendar-type">날짜 기준</label><select id="calendar-type"><option>양력</option><option>음력</option></select></div><div class="field"><label for="birthday">생년월일</label><input id="birthday" type="date" value="2000-01-01"></div><div class="two-fields"><div class="field"><label for="birthtime">출생 시간</label><input id="birthtime" type="time" value="12:00"></div><label class="checkline"><input type="checkbox" id="unknown-time"> 출생 시간 모름</label></div><div class="field"><label for="birthplace">출생 지역</label><select id="birthplace"><option>서울 (예시)</option><option>부산 (예시)</option><option>대전 (예시)</option><option>기타 · 미확정</option></select></div><label class="checkline"><input type="checkbox" id="leap-month"> 음력 윤달 (음력 선택시 정책 검증 필요)</label><button class="button primary dark wide" id="preview-chart" type="button">예시 사주 화면 구경하기 →</button><div class="calc-beta-separator" aria-hidden="true"></div>
+    <p class="calc-beta-note"><strong>계산 엔진 기술 시험</strong> · 양력·1990~2040년·출생 시간이 확인된 일부 조건에서만 시험할 수 있어. 절기·자시·지역 시간 보정은 검증 중이라 정식 개인 사주 결과는 아니야.</p>
+    <button id="calc-beta-trigger" type="button" class="calc-beta-trigger">사주 계산 후보 시험하기 (아직 검증 전)</button>
     <section id="calc-beta-output" class="calc-beta-output" aria-live="polite" aria-label="계산 엔진 시험값" hidden>
       <p id="calc-beta-message" class="calc-beta-message"></p>
       <ul id="calc-beta-pillars" class="calc-beta-pillars"></ul>
       <div id="calc-beta-counts" class="calc-beta-counts"></div>
-      <p class="calc-beta-explain">8글자 대표 오행 개수만 세는 단순 집계예요. 지장간·강약·용신은 계산하지 않았고 한국 역법 교차 검증도 전이에요.</p>
+      <p class="calc-beta-explain">여기서는 8글자의 오행 개수만 세어 봐. 지장간·강약·용신은 계산하지 않았고 한국 역법 검증도 아직 남아 있어.</p>
       <button type="button" id="calc-beta-explore" class="calc-beta-explore" hidden>오행 개념 화면에서 개수 살펴보기 →</button>
     </section>
   <section id="calc-server-local" class="calc-server-local" aria-labelledby="calc-server-heading" hidden>
     <h3 id="calc-server-heading">FastAPI 계산 연결 시험 <span class="server-local-label">내 컴퓨터 전용</span></h3>
-    <p>로컬 서버(127.0.0.1:8000)로 입력을 전송해 계산 연결을 시험해요. 실제 개인정보 대신 기본 가상 날짜(2000-01-01)로만 테스트해 주세요.</p>
-    <button id="calc-server-trigger" class="calc-server-trigger" type="button">로컬 서버로 계산 시험하기 →</button>
+    <p>네 컴퓨터의 서버(127.0.0.1:8000)와 계산이 연결되는지 확인해 볼게. 실제 생일 대신 2000-01-01 같은 가상 날짜로 시험해 줘.</p>
+    <button id="calc-server-trigger" class="calc-server-trigger" type="button">포포랑 서버 계산 시험하기 →</button>
     <div id="calc-server-output" class="calc-server-output" role="status" aria-live="polite" hidden>
       <p id="calc-server-message"></p>
       <ul id="calc-server-pillars" class="calc-server-pillars"></ul>
       <div id="calc-server-counts" class="calc-server-counts"></div>
-      <p class="server-guard-note">개발용 결과이며 정식 사주, 검증된 운세, AI 개인화에 사용하지 않습니다.</p>
+      <p class="server-guard-note">이건 개발용 시험 결과야. 아직 정식 사주나 AI 개인화 풀이에는 쓰지 않아.</p>
     </div>
   </section>
   </dialog>
-  <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><div class="dialog-head"><h2 id="info-title">이 시안에 관하여</h2><button type="button" class="close-dialog" id="close-info" aria-label="닫기">×</button></div><p>포포 서비스 기획 포트폴리오를 위한 인터랙티브 UI 목업입니다. 검증 완료된 개인 명식 계산, AI API 연결, 토정비결 괘 산출, 60종 캐릭터 전체 개발은 아직 수행하지 않았습니다.</p><p>사주·타로·토정비결은 과학적으로 미래 예측 능력이 입증되지 않은 전통·문화 콘텐츠입니다. 의료·법률·투자 등 중요한 의사결정의 근거로 삼지 마세요.</p><button class="button outline" id="info-confirm" type="button">확인했어요</button></dialog>
+  <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><div class="dialog-head"><h2 id="info-title">이 시안에 관하여</h2><button type="button" class="close-dialog" id="close-info" aria-label="닫기">×</button></div><p>포포는 서비스 기획 포트폴리오로 만들고 있어. 검증된 개인 명식, 공개 AI 상담, 토정비결 계산, 60종 캐릭터는 아직 준비 중이야.</p><p>사주·타로·토정비결은 전통·문화 콘텐츠야. 미래를 과학적으로 예측할 수 있다고 입증된 건 아니야. 건강·법률·투자 같은 중요한 결정은 객관적인 정보도 함께 확인해 줘.</p><button class="button outline" id="info-confirm" type="button">확인했어요</button></dialog>
   <dialog id="term-dialog" class="term-dialog" aria-labelledby="term-title">
     <div class="dialog-head"><div><p class="overline">SAJU WORDS · EASY TO DEEP</p><h2 id="term-title">명리 용어 알아보기</h2></div><button type="button" class="close-dialog" id="close-term" aria-label="용어 설명 닫기">×</button></div>
     <p class="term-intro" id="term-basic"></p>
-    <button type="button" class="expand" id="term-deep-toggle" aria-expanded="false" aria-controls="term-deep"><span>전문가 심화 설명 보기</span><span aria-hidden="true">⌄</span></button>
+    <button type="button" class="expand" id="term-deep-toggle" aria-expanded="false" aria-controls="term-deep"><span>조금 더 자세히 알아보기</span><span aria-hidden="true">⌄</span></button>
     <div class="deep-detail" id="term-deep" hidden></div>
-    <p class="compat-legal">일반적인 명리 용어 설명입니다. 목업의 가상 명식이나 본인에 대한 진단 결과가 아니에요.</p>
+    <p class="compat-legal">이건 일반적인 명리 용어 설명이야. 가상 명식이나 개인 진단 결과는 아니야.</p>
     <button type="button" class="button outline wide" disabled>이 용어로 AI에게 질문 · 연동 준비 중</button>
   </dialog>
   <script src="app.js" defer></script>
@@ -261,5 +267,10 @@
   <script src="calc-core.js" defer></script>
   <script src="calc-preview.js" defer></script>
   <script src="calc-server-preview.js" defer></script>
+  <script src="chat-live-local.js" defer></script>
+  <script src="popo-friendly-ui.js" defer></script>
+  <script src="landing-board-sync.js" defer></script>
+  <script src="saju-board.js" defer></script>
+  <script src="popo-account-nav.js" defer></script>
 </body>
 </html>

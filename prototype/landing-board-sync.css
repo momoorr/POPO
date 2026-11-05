@@ -1,0 +1,426 @@
+/* Stage 4E — landing only, based strictly on the approved 2026-10-30 board.
+ * All other screens, original art and Sabrina/Bookk font routing remain unchanged.
+ */
+:root {
+  --popo-board-navy: #202a57;
+  --popo-board-dusk: #343c77;
+  --popo-board-periwinkle: #b8a4e8;
+  --popo-board-blush: #fff1fa;
+  --popo-board-cream: #fff7ee;
+}
+/* The existing small prototype disclaimer is retained; no false readiness claim. */
+body:has(.view[data-panel='home'].active) .topbar {
+  position:absolute;
+  top:31px;
+  left:0;
+  right:0;
+  z-index:20;
+  height:80px;
+  padding:0 clamp(36px,5vw,78px);
+  background:transparent;
+  border-color:transparent;
+}
+body:has(.view[data-panel='home'].active) .topbar .brand {
+  color:white;
+  filter:drop-shadow(0 2px 6px rgba(7,10,41,.2));
+}
+body:has(.view[data-panel='home'].active) .topbar .nav-btn,
+body:has(.view[data-panel='home'].active) .topbar .quiet-button {color:#fffdf9;}
+body:has(.view[data-panel='home'].active) .topbar .nav-btn.active {
+  background:rgba(255,255,255,.16);
+}
+.view[data-panel='home'] .hero.popo-board-landing {
+  box-sizing:border-box;
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(0,48%) minmax(0,52%);
+  gap:0;
+  min-height:710px;
+  width:calc(100% - 32px);
+  margin:0 16px;
+  border-radius:22px;
+  padding:120px clamp(38px,6.7vw,110px) 57px;
+  background:radial-gradient(ellipse at 75% 65%,#575b9a 0%,#313e7f 39%,#202a57 81%);
+  box-shadow:0 20px 50px rgba(38,36,73,.12);
+  overflow:hidden;
+}
+.view[data-panel='home'] .hero.popo-board-landing::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 74% 45%,rgba(188,162,246,.25),transparent 42%),
+    radial-gradient(circle at 16% 25%,rgba(145,138,239,.12),transparent 37%);
+  pointer-events:none;
+  z-index:0;
+}
+.view[data-panel='home'] .hero.popo-board-landing::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,232,178,.9) 1.6px,transparent 2.5px),
+    radial-gradient(circle,rgba(255,233,188,.8) 1px,transparent 2px);
+  background-size:191px 178px,273px 241px;
+  background-position:10px 37px,78px 94px;
+  opacity:.75;
+  pointer-events:none;
+  z-index:0;
+}
+.view[data-panel='home'] .popo-board-landing .hero-left {
+  position:relative;
+  grid-column:1;
+  grid-row:1;
+  align-self:center;
+  z-index:5;
+  max-width:640px;
+  padding:18px 0 0 1.5%;
+}
+.view[data-panel='home'] .popo-board-landing .hero-left .eyebrow {
+  display:none; /* mockup shows the main headline as the hero entry point */
+}
+.view[data-panel='home'] .popo-board-landing #home-title {
+  margin:0 0 19px;
+  max-width:none;
+  font-size:clamp(37px,4.25vw,65px);
+  letter-spacing:-.045em;
+  line-height:1.22;
+  font-weight:700;
+  color:#fff9f3;
+  text-wrap:balance;
+  text-shadow:0 2px 12px rgba(12,14,65,.12);
+}
+.view[data-panel='home'] .popo-board-landing .popo-board-title-accent {
+  font-size:1.28em;
+  letter-spacing:.015em;
+  font-weight:400;
+  color:#e9b9f3;
+  text-shadow:0 2px 10px rgba(244,190,246,.22);
+}
+.view[data-panel='home'] .popo-board-landing .hero-desc {
+  margin:7px 0 24px;
+  color:#fff7fc;
+  font-size:clamp(13px,1.15vw,18px);
+  line-height:1.85;
+  font-weight:400;
+  text-shadow:0 1px 7px rgba(11,16,70,.16);
+}
+.view[data-panel='home'] .popo-board-landing .hero-cta {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.view[data-panel='home'] .popo-board-landing #open-birth {
+  border:0;
+  border-radius:999px;
+  padding:17px 30px;
+  min-height:54px;
+  background:linear-gradient(115deg,#fff8f7,#ffe6f7);
+  color:#202a57;
+  box-shadow:0 8px 22px rgba(9,14,58,.2);
+  font-size:clamp(14px,1.1vw,17px);
+  font-weight:700;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.view[data-panel='home'] .popo-board-landing #open-birth:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px rgba(9,14,58,.25);
+}
+.view[data-panel='home'] .popo-board-landing .hero-cta .button.secondary {
+  display:none; /* compatibility remains available from navigation and cards */
+}
+.view[data-panel='home'] .popo-board-landing .hero-proof {
+  color:#f8eafb;
+  position:absolute;
+  bottom:-83px;
+  left:1.5%;
+  font-size:11px;
+  z-index:5;
+}
+.view[data-panel='home'] .popo-board-landing .hero-right {
+  position:absolute;
+  display:block;
+  inset:82px 0 0 auto;
+  width:min(53%,740px);
+  min-height:0;
+  margin:0;
+  grid-column:auto;
+  grid-row:auto;
+  z-index:2;
+  overflow:visible;
+}
+.view[data-panel='home'] .popo-board-landing .hero-right .hero-rabbit-art {
+  display:none; /* original remains in source; fallback is preserved */
+}
+.view[data-panel='home'] .popo-board-landing .popo-board-hero-illustration {
+  position:absolute;
+  display:block;
+  width:auto;
+  max-width:none;
+  height:min(95%,735px);
+  right:0;
+  bottom:0;
+  object-fit:contain;
+  filter:drop-shadow(-5px 6px 14px rgba(23,14,61,.08));
+  border-radius:0 0 20px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 10%,black 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 10%,black 100%);
+}
+.view[data-panel='home'] .popo-board-landing .popo-board-left-flowers {
+  display:block;
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:auto;
+  height:85%;
+  z-index:1;
+  pointer-events:none;
+  opacity:.95;
+  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 73%,transparent 100%);
+  mask-image:linear-gradient(to bottom,black 0%,black 73%,transparent 100%);
+}
+.view[data-panel='home'] .popo-board-landing .cosmic-points {z-index:3;opacity:.6;}
+.view[data-panel='home'] .popo-board-landing .storybook-cloud {opacity:.08;}
+/* Follow-on feature cards keep their working routes and gain reference pastel polish. */
+.view[data-panel='home'] .feature-section {
+  background:linear-gradient(175deg,#fff8f6,#faf5ff);
+  max-width:1440px;
+}
+.view[data-panel='home'] .feature-card {
+  border:1px solid #eadcf1;
+  background:#fff9f4;
+  border-radius:24px;
+  box-shadow:0 10px 32px rgba(62,39,93,.065);
+}
+@media (max-width:1000px) {
+  .view[data-panel='home'] .hero.popo-board-landing {min-height:625px;padding-left:6vw;grid-template-columns:52% 48%;}
+  .view[data-panel='home'] .popo-board-landing #home-title {font-size:clamp(36px,4.7vw,51px);}
+  .view[data-panel='home'] .popo-board-landing .hero-right{width:55%;}
+}
+@media (max-width:720px) {
+  body:has(.view[data-panel='home'].active) .topbar {
+    top:31px;
+    height:66px;
+    padding:0 23px;
+    background:transparent;
+  }
+  .view[data-panel='home'] .hero.popo-board-landing {
+    width:calc(100% - 16px);
+    margin:0 8px;
+    min-height:790px;
+    padding:112px 28px 24px;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-left {
+    padding:0;
+    align-self:stretch;
+    max-width:none;
+    grid-row:auto;
+    grid-column:auto;
+    z-index:5;
+  }
+  .view[data-panel='home'] .popo-board-landing #home-title {
+    font-size:clamp(35px,9vw,46px);
+    line-height:1.24;
+    margin-bottom:10px;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-desc {font-size:13px;margin-bottom:17px;line-height:1.7;}
+  .view[data-panel='home'] .popo-board-landing #open-birth {font-size:14px;padding:15px 24px;min-height:50px;}
+  .view[data-panel='home'] .popo-board-landing .hero-right {
+    position:relative;
+    inset:auto;
+    grid-column:auto;
+    grid-row:auto;
+    margin:8px 0 -10px;
+    width:100%;
+    min-height:395px;
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+  }
+  .view[data-panel='home'] .popo-board-landing .popo-board-hero-illustration {
+    height:min(100%,495px);
+    max-width:100%;
+    width:auto;
+    right:50%;
+    transform:translateX(50%);
+    bottom:0;
+    border-radius:0 0 18px 18px;
+    -webkit-mask-image:linear-gradient(to right,transparent,black 7%,black 93%,transparent);
+    mask-image:linear-gradient(to right,transparent,black 7%,black 93%,transparent);
+  }
+  .view[data-panel='home'] .popo-board-landing .popo-board-left-flowers {height:38%;opacity:.63;}
+  .view[data-panel='home'] .popo-board-landing .hero-proof {display:none;} /* prototype status is already shown in the global banner */
+}
+@media (max-width:390px) {
+  .view[data-panel='home'] .hero.popo-board-landing {padding:110px 19px 24px;min-height:745px;}
+  .view[data-panel='home'] .popo-board-landing .hero-right {min-height:345px;}
+  .view[data-panel='home'] .popo-board-landing #home-title {font-size:33px;}
+  .view[data-panel='home'] .popo-board-landing .hero-desc {font-size:11px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .view[data-panel='home'] .popo-board-landing #open-birth,
+  .view[data-panel='home'] .popo-board-landing .storybook-cloud,
+  .view[data-panel='home'] .popo-board-landing .cosmic-points i {transition:none!important;animation:none!important;}
+}
+
+/* Stage 4E.1 — restore the approved moon-rabbit illustration.
+ * The image inserted in .hero-right failed to appear in the actual Windows
+ * browser even though the floral strip and illustration file were installed.
+ * Draw the approved illustration directly in the hero's own background layer
+ * so its rendering is independent of nested absolute/percentage sizing.
+ * Do not substitute a different rabbit or alter any text, logo, or CTA.
+ */
+.view[data-panel='home'] .hero.popo-board-landing::before {
+  content:"";
+  z-index:2;
+  opacity:1;
+  pointer-events:none;
+  background-image:
+    linear-gradient(90deg,#263363 0%,rgba(39,52,105,.94) 27%,rgba(40,54,110,0) 55%),
+    url("assets/popo-approved-landing-scene.webp?v=4e1");
+  background-repeat:no-repeat,no-repeat;
+  background-size:100% 100%,auto 100%;
+  background-position:center,right bottom;
+  /* Fade the left edge of the source art, avoiding a hard vertical seam. */
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,transparent calc(100% - 700px),black calc(100% - 520px),black 100%);
+  mask-image:linear-gradient(to right,transparent 0%,transparent calc(100% - 700px),black calc(100% - 520px),black 100%);
+}
+/* Prevent a doubled illustration when some browsers render the old nested img. */
+.view[data-panel='home'] .hero.popo-board-landing .popo-board-hero-illustration {
+  display:none!important;
+}
+/* The moon rabbit is background art, always behind the working HTML CTA. */
+.view[data-panel='home'] .hero.popo-board-landing .hero-left {z-index:5;}
+.view[data-panel='home'] .hero.popo-board-landing .popo-board-left-flowers {z-index:3;}
+@media(max-width:720px) {
+  .view[data-panel='home'] .hero.popo-board-landing::before {
+    background-image:
+      linear-gradient(to bottom,#283568 0%,rgba(41,55,111,.8) 4%,rgba(41,55,111,0) 24%),
+      url("assets/popo-approved-landing-scene.webp?v=4e1");
+    background-size:100% 100%,auto 55%;
+    background-position:center,right bottom;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,transparent 40%,black 58%);
+    mask-image:linear-gradient(to bottom,transparent 0%,transparent 40%,black 58%);
+  }
+}
+@media(max-width:390px) {
+  .view[data-panel='home'] .hero.popo-board-landing::before {
+    background-size:100% 100%,auto 53%;
+  }
+}
+
+/* STAGE 4E.2 — unified, text-free high-resolution scene.
+ * Old cropped rabbit, flower-strip images and pseudo-illustration gradients
+ * are retired from the visible page. All scene pixels come from ONE image at
+ * each breakpoint; interactive text/buttons remain separately in the DOM.
+ * Both assets are custom scene illustrations inspired by the approved board;
+ * they are not copies of its original editable layers.
+ */
+.view[data-panel='home'] .hero.popo-board-landing {
+  background-color:#202b63;
+  background-image:
+    linear-gradient(90deg,
+      rgba(15,24,76,.53) 0%,
+      rgba(20,28,79,.35) 28%,
+      rgba(20,28,79,.10) 52%,
+      rgba(20,28,79,0) 72%),
+    url('assets/popo-unified-hero-desktop.webp');
+  background-repeat:no-repeat,no-repeat;
+  background-size:100% 100%,cover;
+  background-position:center,center;
+  min-height:690px;
+}
+/* Disable the old separate crop/flower overlays and duplicate star/cloud layers. */
+.view[data-panel='home'] .hero.popo-board-landing::before,
+.view[data-panel='home'] .hero.popo-board-landing::after {
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+.view[data-panel='home'] .popo-board-landing .hero-right,
+.view[data-panel='home'] .popo-board-landing .popo-board-left-flowers,
+.view[data-panel='home'] .popo-board-landing .storybook-cloud,
+.view[data-panel='home'] .popo-board-landing .cosmic-points {
+  display:none !important;
+}
+.view[data-panel='home'] .popo-board-landing .hero-left {
+  align-self:center;
+  grid-column:1;
+  z-index:5;
+}
+.view[data-panel='home'] .popo-board-landing #home-title {
+  text-shadow:0 3px 20px rgba(14,17,63,.44);
+}
+.view[data-panel='home'] .popo-board-landing .hero-desc {
+  max-width:520px;
+  text-shadow:0 2px 12px rgba(14,17,63,.40);
+}
+.view[data-panel='home'] .popo-board-landing #open-birth {
+  position:relative;
+  z-index:6;
+}
+@media (min-width:721px) and (max-width:1100px) {
+  .view[data-panel='home'] .hero.popo-board-landing {
+    min-height:630px;
+    background-position:center,58% center;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-left {
+    max-width:490px;
+  }
+}
+@media (max-width:720px) {
+  .view[data-panel='home'] .hero.popo-board-landing {
+    display:flex;
+    flex-direction:column;
+    min-height:790px;
+    padding:111px 25px 28px;
+    background-image:
+      linear-gradient(180deg,
+        rgba(9,20,67,.55) 0%,
+        rgba(14,22,70,.40) 30%,
+        rgba(20,26,79,.07) 52%,
+        rgba(20,26,79,0) 75%),
+      url('assets/popo-unified-hero-mobile.webp');
+    background-size:100% 100%,cover;
+    background-position:center,center 55%;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-left {
+    width:100%;
+    max-width:100%;
+    align-self:flex-start;
+    padding:0;
+  }
+  .view[data-panel='home'] .popo-board-landing #home-title {
+    font-size:clamp(34px,9.2vw,45px);
+    line-height:1.24;
+    max-width:330px;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-desc {
+    font-size:12px;
+    line-height:1.75;
+    max-width:335px;
+  }
+  .view[data-panel='home'] .popo-board-landing .hero-cta {
+    justify-content:flex-start;
+  }
+}
+@media (max-width:390px) {
+  .view[data-panel='home'] .hero.popo-board-landing {
+    min-height:752px;
+    padding:107px 22px 22px;
+  }
+  .view[data-panel='home'] .popo-board-landing #home-title {
+    font-size:clamp(32px,8.9vw,36px);
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .view[data-panel='home'] .popo-board-landing #open-birth {
+    transition:none !important;
+  }
+}

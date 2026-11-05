@@ -23,7 +23,7 @@ const inf=$('#info-dialog');$('#open-privacy').addEventListener('click',()=>inf.
 const topics={
  life:['인생 총운','긴 운세 보고서보다 ‘나를 알아가는 질문’으로 시작해 보세요.','계산된 명식에서 어떤 요소를 보았는지 연결하고, 전문 용어를 일상적인 문장으로 설명하는 자리예요.'],
  work:['직업·진로','‘어떤 직업이 정답인가?’보다 ‘나에게 어떤 방식의 일과 성장이 중요한가?’를 탐색해요.','직업 해석의 출처가 되는 명리 요소를 표시하고, 실제 직무 선택에서는 역량·흥미·근무 조건을 함께 검토하도록 돕는 구성입니다.'],
- love:['연애·관계','관계를 확정적으로 예언하기보다 나의 관계 고민을 차분히 돌아보는 시간.','전통적 사주 해석과 실제 관계 속 의사소통은 별개의 정보임을 구분해 보여줍니다.'],
+ love:['연애·관계','관계를 확정적으로 예언하기보다 나의 관계 고민을 차분히 돌아보는 시간.','전통적 사주 풀이와 실제 사람 사이의 대화는 별개라는 점도 기억해 줘.'],
  money:['금전·재물','돈에 관한 해석을 살펴보되 실제 재무 결정은 현실적 자료와 함께 해요.','재물 관련 해석 근거를 표시하고 투자 수익이나 손실을 확정적으로 예언하지 않도록 설계합니다.'],
  people:['인간관계','사람들 사이에서 내가 중요하게 여기는 가치가 무엇인지 질문해 봐요.','다른 사람의 속마음을 알아맞힌다고 표현하지 않고, 자기 성찰을 돕는 해석 경험을 기획합니다.'],
  study:['학업·학습','학습에 관한 주제를 읽고 나에게 맞는 공부 방법을 함께 생각해 봐요.','시험 점수나 합격 시점을 점술로 보장하지 않습니다. 이 카테고리는 P1 추가 제안입니다.'],
@@ -46,7 +46,7 @@ const elementEntries = [
   {id:'wood',icon:'🌱',title:'목(木) · 자라나는 힘',badge:'목(木)의 작은 숲',lead:'새싹과 나무가 자라는 모습으로 성장과 뻗어감을 상징해요.',description:'목은 봄, 새싹, 나무 같은 이미지와 연결해 설명하는 전통적 오행 분류입니다. 오행은 각각 따로 존재하기보다 서로의 관계 속에서 해석합니다.',guide:'선택한 목은 일반 개념을 설명한 것이에요. 나의 실제 오행 구성은 검증된 명식 계산 후 확인할 수 있어요.'},
   {id:'fire',icon:'✺',title:'화(火) · 퍼지는 온기',badge:'화(火)의 따뜻한 불빛',lead:'따뜻한 빛과 불꽃이 퍼져 나가는 모습으로 열기와 발산을 상징해요.',description:'화는 여름, 빛, 열기처럼 바깥으로 퍼지는 이미지를 나타내는 전통적인 오행 분류입니다. 성격이나 운세를 하나의 오행만으로 단정하지 않아요.',guide:'화 테마는 상징을 이해하기 위한 시연이에요. 실제 개인별 해석과는 연결되어 있지 않아요.'},
   {id:'earth',icon:'✿',title:'토(土) · 머무는 바탕',badge:'토(土)의 포근한 언덕',lead:'흙과 언덕이 생명을 받쳐 주는 모습으로 안정과 바탕을 상징해요.',description:'토는 땅과 계절의 변화를 받쳐 주는 이미지로 설명되는 전통적 오행 분류입니다. 토가 많거나 부족하다는 개인 판단은 명식 계산 없이 할 수 없어요.',guide:'지금 보이는 토의 풍경은 일반적 상징이에요. 개인의 강점이나 약점을 평가한 결과가 아니에요.'},
-  {id:'metal',icon:'✧',title:'금(金) · 맑고 단단한 빛',badge:'금(金)의 은빛 별 조각',lead:'은빛 결정과 맑은 종소리처럼 선명함과 단단함을 상징해요.',description:'금은 금속이나 가을의 맑고 단단한 이미지를 떠올리게 하는 전통적 오행 분류입니다. 그 의미는 다른 요소와의 관계에 따라 달라질 수 있어요.',guide:'이 그림은 금의 대표적인 이미지를 시각화했어요. 개인의 성향을 판정하지 않아요.'},
+  {id:'metal',icon:'✧',title:'금(金) · 맑고 단단한 빛',badge:'금(金)의 은빛 별 조각',lead:'은빛 결정과 맑은 종소리처럼 선명함과 단단함을 상징해요.',description:'금은 금속이나 가을의 맑고 단단한 이미지를 떠올리게 하는 전통적 오행 분류입니다. 다른 요소와 어떤 관계인지에 따라 의미가 달라질 수 있어.',guide:'이 그림은 금의 대표적인 이미지를 시각화했어요. 개인의 성향을 판정하지 않아요.'},
   {id:'water',icon:'≈',title:'수(水) · 흐르는 물결',badge:'수(水)의 고요한 물결',lead:'물줄기와 호수처럼 흐름과 깊이를 상징해요.',description:'수는 겨울, 물, 흘러가는 움직임과 연결해 설명하는 전통적인 오행 분류입니다. 실제 해석에서는 다른 요소와의 관계를 함께 고려합니다.',guide:'수의 색과 풍경은 시각적 설명이에요. 실제 나의 사주 구성 결과가 아니에요.'}
 ];
 const elementMap=new Map(elementEntries.map((entry,index)=>[entry.id,{...entry,index}]));
@@ -94,7 +94,7 @@ elementButtons.forEach((button,index)=>{
 
 $$('[data-color]').forEach(btn=>btn.addEventListener('click',()=>{const cl=$('#character-sprite');cl.className='character-sprite '+btn.dataset.color;$$('[data-color]').forEach(b=>b.classList.toggle('active',b===btn))}));
 function appendMessage(text,who){const div=document.createElement('div');div.className='chat-bubble '+who;div.textContent=text;$('#chat-list').append(div);$('#chat-list').scrollTop=$('#chat-list').scrollHeight}
-$('#chat-form').addEventListener('submit',e=>{e.preventDefault();const input=$('#chat-text');const q=input.value.trim();if(!q)return;appendMessage(q,'user');appendMessage('시안 안내: 실제 AI와 연동되지 않아 입력 문장을 분석하거나 사주를 풀이하지 않습니다. 완성 서비스에서는 선택한 주제(현재: '+(topics[lastTopic]?.[0]||'미선택')+')와 검증된 명식 데이터를 연결하고, 해석 근거와 불확실성을 분리해 답변할 예정입니다.','assistant');input.value='';});
+$('#chat-form').addEventListener('submit',e=>{e.preventDefault();const input=$('#chat-text');const q=input.value.trim();if(!q)return;appendMessage(q,'user');appendMessage('여기는 화면 체험이야! 지금은 내가 네 질문을 실제 AI로 분석하는 게 아니야. 고른 주제(현재: '+(topics[lastTopic]?.[0]||'미선택')+')는 기억해 둘게. 검증된 사주 풀이와 연결되면 근거를 확인하면서 더 이야기해 줄게.','assistant');input.value='';});
 $$('[data-prompt]').forEach(b=>b.addEventListener('click',()=>{$('#chat-text').value=b.dataset.prompt;$('#chat-text').focus()}));
 $('#ask-from-reading').addEventListener('click',()=>{$('#chat-text').placeholder='선택한 '+topics[lastTopic][0]+'에 대해 질문해 보세요 (시안)'});
 
@@ -103,7 +103,7 @@ $('#ask-from-reading').addEventListener('click',()=>{$('#chat-text').placeholder
 const termDictionary = {
   '일간': ['일간(日干)', '태어난 날의 천간을 뜻합니다. 전통 명리학에서 자신을 해석할 때 기준으로 사용하는 글자예요.', '일주의 천간 부분입니다. 다른 천간·지지와의 오행 및 음양 관계를 살피는 기준으로 활용합니다.'],
   '오행': ['오행(五行)', '목·화·토·금·수, 다섯 종류로 사물과 변화를 설명하는 전통 분류예요.', '전통 명리학에서는 천간·지지를 오행으로 분류하고 생·극의 관계 등을 해석에 사용합니다. 오행 개수만으로 개인 성격을 확정할 수는 없습니다.'],
-  '십성': ['십성(十星)', '일간을 기준으로 다른 글자와의 관계를 열 가지 유형으로 분류하는 명리 용어예요.', '비견·겁재·식신·상관·정재·편재·정관·편관·정인·편인으로 구분합니다. 실제 개인별 산출은 검증된 명식과 규칙이 있어야 합니다.'],
+  '십성': ['십성(十星)', '일간을 기준으로 다른 글자와의 관계를 열 가지 유형으로 분류하는 명리 용어예요.', '비견·겁재·식신·상관·정재·편재·정관·편관·정인·편인으로 구분합니다. 개인에게 적용하려면 먼저 검증된 명식과 계산 규칙이 필요해.'],
   '일주': ['일주(日柱)', '태어난 날을 나타내는 천간과 지지의 한 쌍을 말해요.', '육십갑자 중 하나로 나타냅니다. 출생 시각과 날짜 경계 정책의 검증이 필요하며, 계산되지 않은 일주를 임의로 확정하지 않습니다.']
 };
 const termDialog = $('#term-dialog');
@@ -121,7 +121,7 @@ function setTermDeepState(expanded){
   const toggle=$('#term-deep-toggle');
   content.hidden=!expanded;
   toggle.setAttribute('aria-expanded',String(expanded));
-  toggle.querySelector('span:first-child').textContent=expanded?'전문가 심화 설명 접기':'전문가 심화 설명 보기';
+  toggle.querySelector('span:first-child').textContent=expanded?'자세한 설명 접기':'조금 더 자세히 알아보기';
   toggle.querySelector('span[aria-hidden="true"]').textContent=expanded?'⌃':'⌄';
 }
 $('#term-deep-toggle').addEventListener('click',()=>setTermDeepState($('#term-deep').hidden));
@@ -174,7 +174,7 @@ function validateCompatDate(id, errorId, name){
   const input=$(id), message=$(errorId);
   const valid=Boolean(input.value) && input.validity.valid;
   message.hidden=valid;
-  message.textContent=valid?'':name+'의 생년월일을 확인해 주세요.';
+  message.textContent=valid?'':name+'의 생년월일을 확인해 줘.';
   input.setAttribute('aria-invalid',String(!valid));
   return valid;
 }
@@ -195,7 +195,7 @@ $('#compat-input-form').addEventListener('submit',e=>{
   const validB=validateCompatDate('#compat-date-b','#compat-date-b-error','상대방(B)');
   if(!validA || !validB){
     const err=$('#compat-error');
-    err.textContent='표시된 날짜 입력칸을 확인해 주세요.';err.hidden=false;
+    err.textContent='표시된 날짜를 다시 확인해 줘.';err.hidden=false;
     (validA?$('#compat-date-b'):$('#compat-date-a')).focus();
     return;
   }
