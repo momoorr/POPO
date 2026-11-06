@@ -1,0 +1,158 @@
+/* Stage 5C.4: retain compact layout; recovery button is hidden unless a read fails. */
+/* Stage 5C. Mobile-first personal profile manager. Keeps the Stage 5B account sheet intact. */
+.popo-account-sheet .popo-profile-manage-from-account{
+  width:100%;min-height:44px;border:1px solid #d7c9ee;border-radius:14px;
+  background:#faf6ff;color:#57456f;font:inherit;font-size:14px;font-weight:700;
+  padding:10px 12px;margin-bottom:9px;cursor:pointer;
+}
+.popo-profile-manager{border:0;background:transparent;padding:0;color:#40345b;
+  width:min(440px,calc(100% - 20px));max-height:min(90dvh,840px);overflow-y:auto;
+  border-radius:28px;box-shadow:0 25px 75px rgba(24,15,51,.28);
+  font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+.popo-profile-manager::backdrop{background:rgba(33,27,64,.52);backdrop-filter:blur(4px)}
+.popo-profile-sheet{box-sizing:border-box;background:linear-gradient(180deg,#fffbff 0%,#fbf5ff 100%);
+  padding:26px 22px max(25px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px;}
+.popo-profile-head{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.popo-profile-eyebrow{color:#a384cb;font-size:10px;letter-spacing:2px;font-weight:800}
+.popo-profile-head h2{font-family:inherit;font-size:23px;line-height:1.3;letter-spacing:-.5px;margin:6px 0 0;color:#332453}
+.popo-profile-close{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid #e8e0f0;
+  font:inherit;font-size:25px;line-height:1;background:white;color:#6a5b89;cursor:pointer}
+.popo-profile-intro{margin:0;font-size:13px;line-height:1.7;color:#736982}
+.popo-profile-message{margin:0;padding:12px 14px;background:#eee9fa;border-radius:13px;color:#5c4785;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
+.popo-profile-message.is-error{background:#fff0f3;color:#962f55}
+.popo-profile-list-section{display:flex;flex-direction:column;gap:12px}
+.popo-profile-count{margin:0;font-size:13px;font-weight:750;color:#685588}
+.popo-profile-list{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.popo-profile-item{border:1px solid #eee3f6;background:#fff;border-radius:18px;padding:13px;display:flex;
+  justify-content:space-between;align-items:center;gap:8px;box-shadow:0 7px 22px rgba(130,108,160,.07)}
+.popo-profile-info{display:flex;flex-direction:column;gap:6px;min-width:0;overflow-wrap:anywhere}
+.popo-profile-info strong{font-size:15px;color:#3e325b}
+.popo-profile-info small{font-size:11px;line-height:1.6;color:#857a94}
+.popo-profile-item-actions{display:flex;gap:6px;flex-shrink:0}
+.popo-profile-item-actions button{min-height:37px;border-radius:10px;border:1px solid #eadff3;background:#f9f5ff;color:#675182;
+  font:inherit;font-size:12px;font-weight:700;padding:8px 9px;cursor:pointer}
+.popo-profile-item-actions .popo-profile-remove{color:#a45d72;background:#fff8fa;border-color:#f3dce5}
+.popo-profile-add,.popo-profile-save{border:0;border-radius:14px;background:#4b3a82;color:#fff;
+  font:inherit;font-size:14px;font-weight:800;min-height:50px;padding:12px 16px;cursor:pointer}
+.popo-profile-add:disabled,.popo-profile-save:disabled{opacity:.5;cursor:wait}
+.popo-profile-hint,.popo-profile-form-note{margin:0;font-size:11px;line-height:1.8;color:#8a7e98}
+.popo-profile-empty{font-size:13px;color:#807391;background:#fff;border:1px dashed #dfd1ef;border-radius:15px;padding:19px;text-align:center}
+.popo-profile-form{display:flex;flex-direction:column;gap:14px}
+.popo-profile-form[hidden],.popo-profile-list-section[hidden],.popo-profile-field[hidden],
+.popo-profile-check[hidden]{display:none!important}
+.popo-profile-form-title{margin:0;color:#423467;font-size:18px;font-family:inherit}
+.popo-profile-field{display:flex;flex-direction:column;gap:7px}
+.popo-profile-field label{font-size:13px;color:#53456c;font-weight:750}
+.popo-profile-field input,.popo-profile-field select{box-sizing:border-box;display:block;width:100%;min-height:47px;
+  font-family:inherit;font-size:16px;font-weight:500;border-radius:12px;background:#fff;border:1px solid #ddd0e9;
+  color:#403458;padding:10px 12px;line-height:1.4;min-width:0}
+.popo-profile-field input:disabled{background:#f2eef8;color:#8b8398}
+.popo-profile-field :is(input,select):focus-visible,.popo-profile-sheet button:focus-visible{outline:3px solid #b59aec;outline-offset:2px}
+.popo-profile-check{display:flex;align-items:center;gap:9px;font-size:13px;color:#64557d;min-height:38px}
+.popo-profile-check input{width:20px;height:20px;accent-color:#7963b5}
+.popo-profile-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:4px}
+.popo-profile-cancel{border:1px solid #dfd0ee;background:#fff;color:#64547e;border-radius:14px;
+  min-height:50px;font:inherit;font-size:14px;font-weight:700;padding:12px;cursor:pointer}
+@media(max-width:360px){.popo-profile-sheet{padding:21px 15px}.popo-profile-item{flex-direction:column;align-items:stretch}.popo-profile-item-actions{justify-content:flex-end}}
+@media(prefers-reduced-motion:reduce){.popo-profile-manager,.popo-profile-sheet *{scroll-behavior:auto!important;transition:none!important}}
+/* Stage 5C.1: readable mobile forms and explicit loading/retry states. */
+.popo-profile-manager{font-family:var(--popo-readable-font,Pretendard),sans-serif;max-width:calc(100vw - 20px);overscroll-behavior:contain}
+.popo-profile-sheet{overflow-wrap:anywhere;min-width:0}
+.popo-profile-manager[open]{margin:auto}
+.popo-profile-head{position:sticky;top:0;z-index:2;background:#fffbff;padding:4px 0 9px}
+.popo-profile-close,.popo-profile-item-actions button{min-width:44px;min-height:44px}
+.popo-profile-retry,.popo-profile-more{min-height:44px;border:1px solid #ded2ec;border-radius:12px;background:#fff;color:#665181;font:inherit;font-size:14px;cursor:pointer;padding:10px 12px}
+.popo-profile-manager button:disabled{opacity:.55;cursor:wait}
+.popo-profile-message[hidden],.popo-profile-more[hidden],.popo-profile-retry[hidden]{display:none!important}
+.popo-profile-info{flex:1}
+.popo-profile-field select option{font:inherit}
+.popo-profile-actions{padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* Stage 5C.2: shared dense-but-readable My Page/profile cards. */
+/* Stage 5C.3: information and actions share one row, including on small phones. */
+.popo-profile-manager .popo-profile-item{display:grid;grid-template-columns:minmax(0,1fr) 44px;
+  align-items:center;gap:10px;padding:12px;border-radius:17px;min-width:0;}
+.popo-profile-summary{display:grid!important;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:12px!important;min-width:0;width:100%;}
+.popo-profile-avatar{display:flex;position:relative;align-items:center;justify-content:center;width:52px;height:52px;border-radius:17px;overflow:hidden;
+  background:linear-gradient(145deg,#e8defd,#f7e7f8);box-shadow:0 3px 9px rgba(107,78,164,.1);}
+.popo-profile-avatar img{display:block;object-fit:contain;width:100%;height:100%;}
+.popo-profile-avatar.image-unavailable::after{content:'✦';font-size:24px;color:#a58bd5;}
+.popo-profile-summary-copy{min-width:0;text-align:left;}
+.popo-profile-name-line{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:0 0 5px;}
+.popo-profile-name-line .popo-profile-display-name{color:#382b50;font-size:15px;line-height:1.45;font-weight:750;overflow-wrap:anywhere;}
+.popo-profile-relation-badge{display:inline-flex;align-items:center;background:#f0e9fb;border:1px solid #e8dbf7;border-radius:7px;padding:2px 6px;
+  color:#745a98;font-size:10px;line-height:1.5;font-weight:650;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box;}
+.popo-profile-summary .popo-profile-meta{margin:0;color:#746a83;font-size:12px;line-height:1.65;overflow-wrap:anywhere;word-break:keep-all;}
+.popo-profile-summary .popo-profile-meta-region{color:#8a8096;font-size:11px;}
+.popo-profile-manager .popo-profile-item-actions{display:flex;flex-direction:column;justify-content:center;
+  gap:4px;border-top:0;padding:0;align-self:center;}
+.popo-profile-manager .popo-profile-item-actions button{width:44px;min-width:44px;min-height:44px;
+  padding:0 3px;border-radius:10px;font-size:12px;line-height:1.3;white-space:nowrap;}
+.popo-profile-manager .popo-profile-summary{grid-template-columns:44px minmax(0,1fr);gap:10px!important;}
+.popo-profile-manager .popo-profile-avatar{width:44px;height:44px;border-radius:14px;}
+.popo-profile-manager .popo-profile-sheet{padding:20px 18px max(18px,env(safe-area-inset-bottom));gap:12px;}
+.popo-profile-manager .popo-profile-head{padding:0 0 6px;}
+.popo-profile-manager .popo-profile-list-section{gap:10px;}
+.popo-profile-manager .popo-profile-list{gap:8px;}
+.popo-profile-manager .popo-profile-name-line{margin-bottom:3px;gap:5px;}
+.popo-profile-manager .popo-profile-summary .popo-profile-meta{line-height:1.55;}
+.popo-profile-manager .popo-profile-intro{line-height:1.6;}
+.popo-profile-manager .popo-profile-hint{line-height:1.6;}
+.popo-account-sheet .popo-auth-profile-box{padding:14px 12px;box-sizing:border-box;}
+.popo-account-sheet .popo-auth-profile-list{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;}
+.popo-account-sheet .popo-auth-profile-list li.popo-auth-profile{padding:12px 10px;border:1px solid #eee4f7;border-radius:15px;
+  background:#fff;box-shadow:0 4px 12px rgba(118,90,148,.035);}
+.popo-account-sheet .popo-auth-profile-list li.popo-auth-profile:last-child{border-bottom:1px solid #eee4f7;}
+.popo-profile-close{width:44px;height:44px;}
+.popo-profile-time-trigger{display:flex;align-items:center;justify-content:space-between;min-height:50px;width:100%;box-sizing:border-box;
+  border:1px solid #dfd4ec;border-radius:12px;background:#fff;color:#8a7b9b;font:inherit;font-size:16px;font-weight:500;padding:12px 14px;cursor:pointer;text-align:left;}
+.popo-profile-time-trigger::after{content:'⌄';color:#8e79aa;font-size:19px;margin-left:8px;}
+.popo-profile-time-trigger.has-value{color:#3f315c;}
+.popo-profile-time-trigger:disabled{color:#9b92a6;background:#f5f2f8;cursor:default;}
+.popo-profile-time-trigger:focus-visible{outline:3px solid #bfa8ec;outline-offset:3px;}
+.popo-profile-check:has(#popo-profile-time-unknown){min-height:44px;padding:6px 8px;margin-top:0;box-sizing:border-box;}
+.popo-profile-manager input[type='hidden']{display:none!important;}
+
+/* Dedicated time chooser: underlying form is inert, no click-through to unknown. */
+.popo-time-picker{border:1px solid #e9dcf6;border-radius:24px;padding:0;width:min(390px,calc(100% - 28px));max-height:calc(100dvh - 32px);
+  overflow:auto;background:#fffbff;color:#3e2f59;box-shadow:0 24px 80px rgba(37,24,61,.3);font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;}
+.popo-time-picker::backdrop{background:rgba(38,26,58,.55);backdrop-filter:blur(3px);}
+.popo-time-sheet{padding:20px 18px max(20px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:13px;}
+.popo-time-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.popo-time-head h2{font:inherit;font-size:19px;font-weight:750;margin:0;letter-spacing:-.3px;line-height:1.4;}
+.popo-time-close{font:inherit;font-size:25px;line-height:1;color:#77658d;background:white;border:1px solid #e9dff0;border-radius:50%;width:44px;height:44px;flex-shrink:0;cursor:pointer;}
+.popo-time-hint{margin:0;color:#877a95;font-size:12px;line-height:1.7;word-break:keep-all;}
+.popo-time-preview{margin:0;padding:15px 10px;background:linear-gradient(120deg,#f4eefa,#fff3f7);border-radius:15px;
+  color:#5c417f;font-size:22px;text-align:center;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:-.4px;}
+.popo-time-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;}
+.popo-time-step{font:inherit;min-height:44px;border:0;border-radius:11px;background:#f1ebf7;color:#8a7d9b;font-size:12px;font-weight:700;cursor:pointer;}
+.popo-time-step[aria-pressed='true']{background:#6c5398;color:white;}
+.popo-time-step:disabled{opacity:.5;cursor:default;}
+.popo-time-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;max-height:238px;overflow-y:auto;
+  scrollbar-width:thin;overscroll-behavior:contain;padding:4px;}
+.popo-time-choices[data-step='period']{grid-template-columns:1fr 1fr;}
+.popo-time-choices[data-step='minute']{grid-template-columns:repeat(5,minmax(0,1fr));}
+.popo-time-choice{font:inherit;min-height:44px;border:1px solid #e8deee;background:#fff;color:#5b477b;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;}
+.popo-time-choices[data-step='period'] .popo-time-choice{min-height:72px;font-size:18px;}
+.popo-time-choice[aria-pressed='true']{background:#ebe1fb;border-color:#b797de;color:#543475;}
+.popo-time-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;border-top:1px solid #eee4f5;padding-top:13px;}
+.popo-time-actions button{font:inherit;min-height:48px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;}
+.popo-time-cancel{border:1px solid #e3d8ec;color:#847493;background:white;}
+.popo-time-confirm{border:0;color:white;background:#60478e;}
+.popo-time-confirm:disabled{opacity:.4;cursor:default;}
+.popo-time-picker button:focus-visible{outline:3px solid #c2a6ee;outline-offset:1px;}
+@media(max-width:360px){
+  .popo-profile-sheet{padding:22px 16px;}
+  .popo-profile-manager .popo-profile-sheet{padding:18px 14px max(16px,env(safe-area-inset-bottom));}
+  .popo-profile-manager .popo-profile-item{grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:10px;}
+  .popo-profile-manager .popo-profile-summary{grid-template-columns:36px minmax(0,1fr);gap:8px!important;}
+  .popo-profile-manager .popo-profile-avatar{width:36px;height:36px;border-radius:12px;}
+  .popo-profile-summary{grid-template-columns:44px minmax(0,1fr);gap:9px!important;}
+  .popo-profile-avatar{width:44px;height:44px;border-radius:14px;}
+  .popo-profile-summary .popo-profile-meta{font-size:11px;}
+  .popo-account-sheet .popo-auth-profile-box{padding:12px 10px;}
+  .popo-time-sheet{padding:16px 12px;}
+}
+@media(max-height:620px){.popo-time-choices{max-height:160px;}.popo-time-sheet{gap:9px}.popo-time-preview{padding:9px}}
+@media(prefers-reduced-motion:reduce){.popo-time-picker *{scroll-behavior:auto!important;}}

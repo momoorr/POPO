@@ -1,0 +1,13 @@
+/* POPO Stage 5C — birthplace region list (UI only; no calculation policy changes). */
+.birth-dialog .popo-birth-region-hint {
+  margin: 5px 0 0;
+  color: #786c8c;
+  font-size: 11px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.birth-dialog select#birthplace { min-width: 0; max-width: 100%; }
+.birth-dialog select#birthplace optgroup { font-weight: 700; }
+@media (max-width: 390px) {
+  .birth-dialog .popo-birth-region-hint { font-size: 10px; }
+}

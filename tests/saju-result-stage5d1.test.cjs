@@ -1,0 +1,22 @@
+const assert=require('node:assert/strict');
+const api=require('../prototype/popo-saju-result.js');
+const display=require('../prototype/popo-profile-display.js');
+let pass=0;
+function check(name,fn){fn();pass++;console.log('PASS '+name)}
+const profile={calendar_type:'solar',birth_date:'2000-01-01',birth_time:'12:00:00',birth_time_unknown:false,birth_region:'서울특별시'};
+const counts={wood:1,fire:3,earth:3,metal:0,water:1};
+const candidate={status:'candidate_only',verified:false,can_personalize:false,engine:'lunar-javascript@1.7.7',pillars:{year:'己卯',month:'丙子',day:'戊午',hour:'戊午'},counts};
+check('Ganji is readable Korean, no invented day pillar',()=>{assert.equal(api.readableGanji('丁亥'),'정해');assert.equal(api.readableGanji('甲子'),'갑자');assert.equal(api.readableGanji('invalid'),null)});
+check('only candidate_only with unverified flags accepted',()=>{assert.equal(api.assertCandidate(candidate),candidate);assert.throws(()=>api.assertCandidate({...candidate,verified:true}));assert.throws(()=>api.assertCandidate({...candidate,status:'verified'}));});
+check('invalid element sum is rejected',()=>{assert.throws(()=>api.assertCandidate({...candidate,counts:{...counts,earth:4}}))});
+check('malformed day pillar is rejected',()=>{assert.throws(()=>api.assertCandidate({...candidate,pillars:{...candidate.pillars,day:'Fake'}}))});
+check('payload contains only calendar/date/time/place/unknown_time',()=>{assert.deepEqual(api.payload(profile),{calendar:'양력',date:'2000-01-01',time:'12:00',place:'서울',unknown_time:false})});
+check('unsupported lunar is blocked, not converted silently',()=>{assert.match(api.canProbe({...profile,calendar_type:'lunar'}),/양력/)});
+check('unknown birth time blocked',()=>{assert.match(api.canProbe({...profile,birth_time_unknown:true}),/시간/)});
+check('other region blocked, not guessed Seoul',()=>{assert.match(api.canProbe({...profile,birth_region:'경기도'}),/서울·부산·대전/)});
+check('solar term boundary blocked',()=>{assert.match(api.canProbe({...profile,birth_date:'2000-01-05'}),/절기/)});
+check('midnight boundary blocked',()=>{assert.match(api.canProbe({...profile,birth_time:'23:30:00'}),/자시/)});
+check('summary content tied to verified format candidate counts',()=>{const s=api.summaries(candidate);assert.equal(s.length,4);assert.match(s[1].summary,/3개/);assert.match(s[2].summary,/없는 글자/);});
+check('no non-local environment may call local probe',()=>{assert.equal(api.isLocal({protocol:'https:',hostname:'mypopo.example'}),false);assert.equal(api.isLocal({protocol:'http:',hostname:'127.0.0.1'}),true)});
+check('animal remains unset without validated computed element',()=>{assert.equal(display.animalForProfile('11111111-1111-1111-1111-111111111111',null),null)});
+console.log(`STAGE 5D.1 UNIT TOTAL ${pass} PASS 0 FAIL`);

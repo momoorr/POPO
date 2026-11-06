@@ -1,0 +1,57 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stage 5C mock browser fixture</title>
+<link rel="stylesheet" href="../prototype/popo-account-nav.css">
+<link rel="stylesheet" href="../prototype/popo-kakao-auth.css">
+<link rel="stylesheet" href="../prototype/popo-profile-crud.css">
+<style>*{box-sizing:border-box}body{margin:0;background:#f5effd;font-family:Pretendard,'Malgun Gothic',sans-serif}.app-shell{width:min(440px,100%);margin:auto;min-height:100vh;background:#fff}.topbar{height:65px;display:flex;background:#35245e;color:#fff;align-items:center;justify-content:space-between;padding:0 15px}.mobile-nav{display:none}main{padding:30px 20px}</style>
+<script>
+window.POPO_SUPABASE_CONFIG={url:'https://fake-id.supabase.co',publishableKey:'sb_publishable_mock_for_offline_unit_testing_only'};
+window._mockUser={id:'d7a64f1e-e901-4121-a025-809d89ef3bba',user_metadata:{nickname:'포포 회원'}};
+window._mockRows=[];window._fakeCalls=[];
+window._mockClient={
+  auth:{
+    getUser:async()=>({data:{user:window._mockUser},error:null}),
+    signInWithOAuth:async()=>({error:null}),
+    signOut:async()=>{window._mockUser=null;return{error:null}},
+    onAuthStateChange:f=>{window._onAuthChange=f;return{data:{subscription:{unsubscribe(){}}}}}
+  },
+  from:table=>{
+    if(table!=='popo_profiles')throw Error('Unsupported table '+table);
+    let action='select',next=null,filter={};
+    const op={
+      select(){return op;},eq(k,v){filter[k]=v;return op;},order(){return op;},
+      limit:async n=>{
+        window._fakeCalls.push({action,filter:{...filter}});
+        const rows=window._mockRows.filter(r=>Object.entries(filter).every(([k,v])=>r[k]===v));
+        return{data:rows.slice(0,n),error:null};
+      },
+      insert:v=>{action='insert';next=v;return op;},
+      update:v=>{action='update';next=v;return op;},
+      delete:()=>{action='delete';return op;},
+      single:async()=>{
+        window._fakeCalls.push({action,filter:{...filter},write:next});
+        let id='e6bd367f-51f8-4f11-8709-a081c3a7db8e';
+        if(action==='insert'){
+          id='e6bd367f-51f8-4f11-8709-a081c3a7db8e';
+          window._mockRows.unshift({...next,id,created_at:'2026-11-05T15:00:00Z'});
+        }else if(action==='update'){
+          for(const row of window._mockRows)if(Object.entries(filter).every(([k,v])=>row[k]===v)){
+            Object.assign(row,next);id=row.id;
+          }
+        }else if(action==='delete'){
+          const row=window._mockRows.find(r=>Object.entries(filter).every(([k,v])=>r[k]===v));
+          if(row)id=row.id;
+          window._mockRows=window._mockRows.filter(r=>!Object.entries(filter).every(([k,v])=>r[k]===v));
+        }
+        return{data:{id},error:null};
+      }
+    };return op;
+  }
+};
+window.supabase={createClient:()=>window._mockClient};
+</script>
+<script src="../prototype/popo-account-nav.js" defer></script>
+<script src="../prototype/popo-kakao-auth.js" defer></script>
+<script src="../prototype/popo-profile-crud.js" defer></script>
+</head><body><div class="app-shell"><header class="topbar"><strong>✦ POPO</strong></header>
+<main><h1>POPO 로그인·사주 보관함 모의 테스트</h1><p>외부 서버나 실제 회원 정보와 연결되지 않아.</p><select id="birthplace"><option value="서울특별시">서울특별시</option><option value="부산광역시">부산광역시</option><option value="대전광역시">대전광역시</option></select><dialog id="birth-dialog"><p>옛 명식 입력창 (이 패치에서는 사용하지 않음)</p></dialog></main>
+<nav class="desktop-nav"><button data-view="home">Home</button></nav></div></body></html>

@@ -1,0 +1,53 @@
+/* POPO Stage 5B.2 — mobile-first readable type. Preserve the original POPO logo. */
+/* Pretendard v1.3.9 (SIL OFL): loaded from its official documented CDN. */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+:root {
+  --popo-readable-font: "Pretendard Variable", "Pretendard", -apple-system,
+    BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", system-ui, sans-serif;
+}
+
+/* Explicitly exclude the pre-existing Sabrina Star logo and SVG icons.
+   This sheet is added last and overrides Bookk/Noto Serif in all other UI text. */
+body,
+body :not(.brand):not(.brand *):not(.popo-logo):not(.popo-logo *):not([data-popo-logo]):not([data-popo-logo] *):not(svg):not(svg *) {
+  font-family: var(--popo-readable-font) !important;
+}
+body {
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Form controls stay >=16px to prevent input zoom on iPhone browsers. */
+body :is(input, textarea, select, option, optgroup) {
+  font-family: var(--popo-readable-font) !important;
+  font-size: 16px !important;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+body select#birthplace {
+  font-weight: 500 !important;
+  min-height: 48px;
+}
+body select#birthplace option {
+  font-weight: 500 !important;
+  font-size: 16px !important;
+}
+body :is(.field > label, .checkline, .popo-saju-card-note, .popo-account-description,
+  .explain-note, .feature-description, .element-info-note p, .popo-dialog-body p) {
+  line-height: 1.7;
+}
+body :is(.field > label, .checkline) { font-size: 13px !important; }
+body :is(.feature-description, .popo-saju-card-note) { font-size: 12px !important; }
+body .popo-account-description { font-size: 13px !important; }
+body :is(.popo-saju-hero h1, .popo-saju-card h2, .popo-saju-reading h2) {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+@media (max-width:390px) {
+  body :is(input,textarea,select,option) { font-size:16px !important; }
+}

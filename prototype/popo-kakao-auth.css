@@ -1,0 +1,26 @@
+/* Stage 5B: adapt existing Stage 4G sheet, without altering the site layout. */
+.popo-account-sheet .popo-auth-kakao,.popo-account-sheet .popo-auth-guest,
+.popo-account-sheet .popo-auth-signout,.popo-account-sheet .popo-auth-add-profile{
+  width:100%;min-height:48px;border-radius:14px;cursor:pointer;
+  font:inherit;font-size:14px;font-weight:800;padding:10px 15px;
+}
+.popo-account-sheet .popo-auth-kakao{background:#FEE500;color:#171717;border:1px solid #F7DC00;}
+.popo-account-sheet .popo-auth-guest{background:#fff8ff;color:#61557b;border:1px solid #e1d7eb;}
+.popo-account-sheet .popo-auth-signout{background:#fff8ff;color:#735d91;border:1px solid #e1d7eb;}
+.popo-account-sheet .popo-auth-add-profile{background:#43366f;color:#fff;border:0;}
+.popo-account-sheet .popo-auth-kakao:disabled,.popo-account-sheet .popo-auth-signout:disabled{opacity:.6;cursor:wait;}
+.popo-account-sheet .popo-auth-feedback{color:#4d4374;background:#eeeafb;padding:12px 13px;
+  border-radius:13px;font-size:12px;line-height:1.7;width:100%;margin:0;}
+.popo-account-sheet .popo-auth-feedback.is-error{color:#96364e;background:#fff0f3;}
+.popo-account-sheet .popo-auth-profile-box{width:100%;text-align:left;padding:15px;
+  border:1px solid #e7dff1;border-radius:17px;background:#fffdff;}
+.popo-account-sheet .popo-auth-profile-box h3{font-size:15px;margin:0 0 8px;}
+.popo-account-sheet .popo-auth-profile-list{list-style:none;padding:0;margin:0 0 12px;
+  font-size:12px;color:#5b5277;}
+.popo-account-sheet .popo-auth-profile-list li{padding:9px 5px;border-bottom:1px solid #eee8f3;
+  overflow-wrap:anywhere;}
+.popo-account-sheet .popo-auth-profile-list li:last-child{border-bottom:0;}
+.popo-account-sheet .popo-auth-profile-empty{color:#8a809c;}
+.popo-account-sheet :is(.popo-auth-kakao,.popo-auth-guest,.popo-auth-signout,.popo-auth-add-profile):focus-visible{
+  outline:3px solid #8f78ca;outline-offset:3px;
+}

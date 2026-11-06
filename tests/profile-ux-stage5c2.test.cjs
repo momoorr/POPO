@@ -1,0 +1,25 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path');
+const {timeParts,composeTime,displayTime}=require('../prototype/popo-profile-crud.js');
+const d=require('../prototype/popo-profile-display.js');
+let count=0;
+const test=(name,fn)=>{fn();count++;console.log('PASS',name);};
+const id='d7a64f1e-e901-4121-a025-809d89ef3bba';
+test('all 1440 minute values round-trip through AM/PM',()=>{for(let h=0;h<24;h++)for(let m=0;m<60;m++){
+ const t=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');assert.equal(composeTime(timeParts(t)),t);
+}});
+test('midnight and noon are not swapped',()=>{assert.equal(composeTime({period:'am',hour:12,minute:0}),'00:00');assert.equal(composeTime({period:'pm',hour:12,minute:0}),'12:00');});
+test('incomplete choices never invent a time',()=>{for(const t of ['',null,undefined,'25:10','12:60','12'])assert.equal(composeTime(timeParts(t)),null);assert.equal(composeTime({period:'am',hour:1,minute:null}),null);});
+test('invalid time values rejected',()=>{for(const p of [{period:'am',hour:0,minute:10},{period:'evening',hour:2,minute:5},{period:'pm',hour:12,minute:60},{period:'am',hour:1,minute:-1}])assert.equal(composeTime(p),null);});
+test('time display uses explicit AM/PM',()=>{assert.equal(displayTime('00:05'),'오전 12시 05분');assert.equal(displayTime('13:07'),'오후 01시 07분');});
+test('card contains relationship calendar date time region gender',()=>{const s=d.summary({display_name:'별토끼',relationship:'friend',calendar_type:'lunar',leap_month:true,birth_date:'2000-01-01',birth_time:'12:34:00',birth_region:'대전광역시',gender:'female'});assert.equal(s.relation,'친구');assert.equal(s.birthLine,'음력 · 윤달 2000.01.01 · 12:34');assert.equal(s.regionLine,'대전광역시');assert.equal(s.gender,'여성');});
+test('unknown times do not display a fabricated clock',()=>assert.match(d.summary({birth_time_unknown:true,birth_time:'12:00'}).birthLine,/시간 모름/));
+test('other relationship label preserved',()=>assert.equal(d.summary({relationship:'other',relationship_custom:'직장동료'}).relation,'직장동료'));
+test('all twelve requested animals covered exactly once',()=>{const pool=Object.values(d.ANIMAL_POOLS).flat();assert.equal(new Set(pool).size,12);assert.equal(pool.length,12);for(const x of ['rabbit','tiger','pomeranian','maltese','cat','penguin','squirrel','fox','shiba','sheep','hamster','bear'])assert.ok(pool.includes(x));});
+test('no computed element => no random element assigned',()=>{assert.equal(d.animalForProfile(id,null),null);assert.equal(d.animalForProfile(id,'unknown'),null);assert.equal(d.animalForProfile('invalid','wood'),null);});
+test('same ID and element => same animal on every device',()=>assert.deepEqual(d.animalForProfile(id,'wood'),d.animalForProfile(id.toUpperCase(),'wood')));
+test('selected animal remains within the computed element pool',()=>{for(const elem of Object.keys(d.ANIMAL_POOLS)){const found=new Set();for(let i=0;i<300;i++){const r=d.animalForProfile('d7a64f1e-e901-4121-a025-'+i.toString(16).padStart(12,'0'),elem);assert.ok(d.ANIMAL_POOLS[elem].includes(r.id));found.add(r.id);}assert.equal(found.size,d.ANIMAL_POOLS[elem].length);}});
+test('no private profile data is persisted by display helpers',()=>{const s=fs.readFileSync(path.join(__dirname,'../prototype/popo-profile-display.js'),'utf8');assert.doesNotMatch(s,/localStorage|sessionStorage|\.innerHTML\s*=/);});
+test('time input uses owned dialog rather than native time popup',()=>{const s=fs.readFileSync(path.join(__dirname,'../prototype/popo-profile-crud.js'),'utf8');assert.match(s,/time.type='hidden'/);assert.match(s,/picker.showModal\(\)/);assert.match(s,/picker.close\('applied'\)/);});
+console.log(`STAGE 5C.2 UNIT TOTAL ${count} PASS 0 FAIL`);
