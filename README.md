@@ -190,3 +190,7 @@ flowchart TD
 **참고:** [삐삐사주 공식 소개](https://ppippi.me/about) · [포스텔러](https://app.forceteller.com/) · [한국민족문화대백과 — 토정비결](https://encykorea.aks.ac.kr/Article/E0059207)
 
 *본 README의 기능 상태와 개발 일정은 2026년 10월 29일 기준이며, 실제 완료 여부는 이후 검증 기록으로 업데이트합니다.*
+
+## 湲고쉷 蹂寃쎄낵 UX 媛쒖꽑 湲곕줉
+
+[湲고쉷 蹂寃?諛?UX 媛쒖꽑 寃쏀뿕 ?뺣━](docs/POPO-planning-decisions-and-ux-improvements.md)
