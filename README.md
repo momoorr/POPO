@@ -213,6 +213,6 @@ flowchart TD
 
 *본 README의 기능 상태와 개발 일정은 2026년 10월 29일 기준이며, 실제 완료 여부는 이후 검증 기록으로 업데이트합니다.*
 
-## 湲고쉷 蹂寃쎄낵 UX 媛쒖꽑 湲곕줉
+## 기획 변경과 UX 개선 기록
 
-[湲고쉷 蹂寃?諛?UX 媛쒖꽑 寃쏀뿕 ?뺣━](docs/POPO-planning-decisions-and-ux-improvements.md)
+[기획 변경 및 UX 개선 경험 정리](docs/POPO-planning-decisions-and-ux-improvements.md)
